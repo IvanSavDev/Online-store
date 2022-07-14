@@ -1,0 +1,12 @@
+@import '../../component/Cards/Cards';
+@import '../../component/Filters/Filters';
+
+.main {
+  flex-grow: 1;
+}
+
+.main-container {
+  display: flex;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}

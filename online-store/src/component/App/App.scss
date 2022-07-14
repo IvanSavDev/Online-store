@@ -1,0 +1,41 @@
+@import url(./Normalize.scss);
+
+$bisque: bisque;
+
+* {
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-family: 'Edu VIC WA NT Beginner';
+  src: url(../../assets/font/EduVICWANTBeginner-Medium.ttf);
+}
+
+body {
+  font-family: 'Edu VIC WA NT Beginner';
+  height: 100vh;
+}
+
+#root {
+  height: 100%;
+}
+
+.container-app {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.layout-width {
+  max-width: 1300px;
+  padding: 0 20px;
+  margin-left: auto;
+  margin-right: auto;
+  height: 100%;
+}
+
+
+
+@import '../../layout/Header/Header';
+@import '../../layout/Main/Main.scss';
+@import '../../layout/Footer/Footer.scss';

@@ -1,0 +1,17 @@
+@import './Card/Card';
+
+.cards {
+  // display: flex;
+  // flex-wrap: wrap;
+  // justify-content: center;
+  // gap: 60px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-rows: repeat(auto-fill, minmax(200px, 1fr));
+  // grid-auto-flow: row;
+  gap: 60px;
+}
+
+.cards-container {
+  flex-grow: 1;
+}

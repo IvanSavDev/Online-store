@@ -1,0 +1,22 @@
+.header {
+  flex: 0 1 100px;
+  background-color: $bisque;
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  height: 100%;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+
+  .logo_name {
+      font-size: 26px;
+      margin-left: 15px;
+  }
+}
+
