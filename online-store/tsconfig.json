@@ -120,6 +120,7 @@
     "sourceMap": true, // Сгенерировать соответствующий файл .map
     "declaration": true, // Сгенерировать соответствующий файл .d.ts
     "noUnusedLocals": true, // Сообщать об ошибке при неиспользованных локальных элементах (переменных, функциях, импортах).
+    "noImplicitAny": true,
     "noUnusedParameters": true, // Сообщать об ошибке при неиспользуемых параметрах.
     "experimentalDecorators": true, // Включить экспериментальную поддержку для декораторов ES.
     "noFallthroughCasesInSwitch": true, // Сообщать об ошибке при встрече кейсов fallthrough в инструкциях switch.
