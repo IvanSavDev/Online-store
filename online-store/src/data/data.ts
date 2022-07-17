@@ -3,7 +3,7 @@ import { LaptopData } from "./typeData";
 const data: Array<LaptopData> = [
   {
     id: 1,
-    manufacturer: 'hp',
+    company: 'hp',
     name: 'HP pavilion 14',
     count: 5,
     year: 2016,
@@ -17,7 +17,7 @@ const data: Array<LaptopData> = [
   },
   {
     id: 2,
-    manufacturer: 'huawey',
+    company: 'huawey',
     name: 'Huawey matebook 14',
     count: 7,
     year: 2022,
@@ -31,7 +31,7 @@ const data: Array<LaptopData> = [
   },
   {
     id: 3,
-    manufacturer: 'huawey',
+    company: 'huawey',
     name: 'Huawey matebook D 14',
     count: 5,
     year: 2019,
@@ -45,7 +45,7 @@ const data: Array<LaptopData> = [
   },
   {
     id: 4,
-    manufacturer: 'lenovo',
+    company: 'lenovo',
     name: 'Lenovo idepad',
     count: 4,
     year: 2014,
@@ -59,7 +59,7 @@ const data: Array<LaptopData> = [
   },
   {
     id: 5,
-    manufacturer: 'honor',
+    company: 'honor',
     name: 'Honor MagicBook X',
     count: 7,
     year: 2020,
@@ -73,7 +73,7 @@ const data: Array<LaptopData> = [
   },
   {
     id: 6,
-    manufacturer: 'acer',
+    company: 'acer',
     name: 'Acer A715',
     count: 4,
     year: 2015,
@@ -87,7 +87,7 @@ const data: Array<LaptopData> = [
   },
   {
     id: 7,
-    manufacturer: 'asus',
+    company: 'asus',
     name: 'Asus R522',
     count: 2,
     year: 2018,
@@ -101,7 +101,7 @@ const data: Array<LaptopData> = [
   },
   {
     id: 8,
-    manufacturer: 'acer',
+    company: 'acer',
     name: 'Acer Aspire 3',
     count: 3,
     year: 2016,
@@ -115,7 +115,7 @@ const data: Array<LaptopData> = [
   },
   {
     id: 9,
-    manufacturer: 'honor',
+    company: 'honor',
     name: 'Honor MagicBook X15',
     count: 7,
     year: 2021,
@@ -129,7 +129,7 @@ const data: Array<LaptopData> = [
   },
   {
     id: 10,
-    manufacturer: 'huawey',
+    company: 'huawey',
     name: 'Huawey MateBook 14s',
     count: 5,
     year: 2022,
@@ -143,7 +143,7 @@ const data: Array<LaptopData> = [
   },
   {
     id: 11,
-    manufacturer: 'hp',
+    company: 'hp',
     name: 'HP Pavilion 15',
     count: 3,
     year: 2017,
@@ -157,7 +157,7 @@ const data: Array<LaptopData> = [
   },
   {
     id: 12,
-    manufacturer: 'msi',
+    company: 'msi',
     name: 'MSI Katana GF76',
     count: 5,
     year: 2021,
@@ -171,7 +171,7 @@ const data: Array<LaptopData> = [
   },
   {
     id: 13,
-    manufacturer: 'msi',
+    company: 'msi',
     name: 'MSI Modern 14',
     count: 5,
     year: 2019,
@@ -185,7 +185,7 @@ const data: Array<LaptopData> = [
   },
   {
     id: 14,
-    manufacturer: 'apple',
+    company: 'apple',
     name: 'Apple MacBook Air 13',
     count: 7,
     year: 2020,
@@ -199,7 +199,7 @@ const data: Array<LaptopData> = [
   },
   {
     id: 15,
-    manufacturer: 'apple',
+    company: 'apple',
     name: 'Apple MacBook Pro 13',
     count: 5,
     year: 2021,
