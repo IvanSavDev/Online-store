@@ -1,0 +1,9 @@
+export const SELECT_COMPANY = 'SELECT_COMPANY';
+export const SELECT_CPU = 'SELECT_CPU';
+export const SELECT_RAM = 'SELECT_RAM';
+export const SELECT_SSD = 'SELECT_SSD';
+export const SELECT_COUNTS = 'SELECT_COUNTS';
+export const SELECT_PRICE = 'SELECT_PRICE';
+export const SELECT_YEAR_REALEASE = 'SELECT_YEAR_REALEASE';
+export const SELECT_COLORS = 'SELECT_COLORS';
+export const SELECT_FAVORITE = 'SELECT_FAVORITE';
