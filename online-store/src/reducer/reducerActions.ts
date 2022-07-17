@@ -8,6 +8,8 @@ import {
   SELECT_YEAR_REALEASE,
   SELECT_PRICE,
   SELECT_FAVORITE,
+  RESET,
+  ADD_TO_BASKET,
 } from './reducerConst';
 
 interface IChooseCompany {
@@ -60,11 +62,22 @@ interface IChooseFavorite {
   payload: boolean;
 }
 
-type IDataCheckbox = {
+interface IAddToBacket {
+  type: typeof ADD_TO_BASKET;
+  payload: number;
+}
+
+interface IResetState {
+  type: typeof RESET;
+}
+
+type DataCheckbox = {
   [key: string]: boolean;
 };
 
-type IDataRange = [number, number];
+type DataRange = [number, number];
+
+type CountGoodsType = number;
 
 export type Actions =
   | IChooseCompany
@@ -75,15 +88,63 @@ export type Actions =
   | IChooseSdd
   | IChooseYearRealease
   | IChoosePrice
-  | IChooseFavorite;
+  | IChooseFavorite
+  | IResetState
+  | IAddToBacket;
+
+export const chooseCompany = (dataCompany: DataCheckbox): IChooseCompany => ({
+  type: SELECT_COMPANY,
+  payload: dataCompany,
+});
+export const chooseCpu = (dataCpu: DataCheckbox): IChooseCpu => ({
+  type: SELECT_CPU,
+  payload: dataCpu,
+});
+export const chooseRam = (dataRam: DataCheckbox): IChooseRam => ({
+  type: SELECT_RAM,
+  payload: dataRam,
+});
+export const chooseColor = (dataColors: DataCheckbox): IChooseColors => ({
+  type: SELECT_COLORS,
+  payload: dataColors,
+});
+export const chooseCounts = (dataCounts: DataRange): IChooseCounts => ({
+  type: SELECT_COUNTS,
+  payload: dataCounts,
+});
+export const chooseSsd = (dataSsd: DataCheckbox): IChooseSdd => ({
+  type: SELECT_SSD,
+  payload: dataSsd,
+});
+export const chooseYearRealease = (
+  dataYearRealease: DataRange
+): IChooseYearRealease => ({
+  type: SELECT_YEAR_REALEASE,
+  payload: dataYearRealease,
+});
+export const choosePrice = (dataPrice: DataRange): IChoosePrice => ({
+  type: SELECT_PRICE,
+  payload: dataPrice,
+});
+export const chooseFavorite = (dataFavorite: boolean): IChooseFavorite => ({
+  type: SELECT_FAVORITE,
+  payload: dataFavorite,
+});
+export const resetState = (): IResetState => ({
+  type: RESET,
+});
+export const addToBacket = (countGoods: CountGoodsType): IAddToBacket => ({
+  type: ADD_TO_BASKET,
+  payload: countGoods,
+});
 
 // type ISelectAction = {
-//   [key: string]: (key: IDataRange | IDataCheckbox | boolean) => Actions,
+//   [key: string]: (key: DataRange | DataCheckbox | boolean) => Actions,
 // }
 
 // const selectAction = (nameCategory: string) => {
 //   const actionsByName: ISelectAction = {
-//     company: (key: IDataCheckbox) => chooseCompany(key),
+//     company: (key: DataCheckbox) => chooseCompany(key),
 //     cpu: chooseCpu,
 //     ram: chooseRam,
 //     color: chooseColor,
@@ -96,42 +157,3 @@ export type Actions =
 
 //   return actionsByName[nameCategory];
 // }
-
-export const chooseCompany = (dataCompany: IDataCheckbox): IChooseCompany => ({
-  type: SELECT_COMPANY,
-  payload: dataCompany,
-});
-export const chooseCpu = (dataCpu: IDataCheckbox): IChooseCpu => ({
-  type: SELECT_CPU,
-  payload: dataCpu,
-});
-export const chooseRam = (dataRam: IDataCheckbox): IChooseRam => ({
-  type: SELECT_RAM,
-  payload: dataRam,
-});
-export const chooseColor = (dataColors: IDataCheckbox): IChooseColors => ({
-  type: SELECT_COLORS,
-  payload: dataColors,
-});
-export const chooseCounts = (dataCounts: IDataRange): IChooseCounts => ({
-  type: SELECT_COUNTS,
-  payload: dataCounts,
-});
-export const chooseSsd = (dataSsd: IDataCheckbox): IChooseSdd => ({
-  type: SELECT_SSD,
-  payload: dataSsd,
-});
-export const chooseYearRealease = (
-  dataYearRealease: IDataRange
-): IChooseYearRealease => ({
-  type: SELECT_YEAR_REALEASE,
-  payload: dataYearRealease,
-});
-export const choosePrice = (dataPrice: IDataRange): IChoosePrice => ({
-  type: SELECT_PRICE,
-  payload: dataPrice,
-});
-export const chooseFavorite = (dataFavorite: boolean): IChooseFavorite => ({
-  type: SELECT_FAVORITE,
-  payload: dataFavorite,
-});

@@ -22,6 +22,21 @@ const getAction = (nameCategory: string) => {
   }
 };
 
+const getNameState = (nameCategory: string) => {
+  if (nameCategory === 'cpu') {
+    return 'selectedCpu';
+  }
+  if (nameCategory === 'ram') {
+    return 'selectedRam';
+  }
+  if (nameCategory === 'ssd') {
+    return 'selectedSsd';
+  }
+  if (nameCategory === 'company') {
+    return 'selectedCompany';
+  }
+};
+
 const FilterCategory = ({
   category,
   name,
@@ -31,13 +46,15 @@ const FilterCategory = ({
 }) => {
   const updateName = name.charAt(0).toUpperCase() + name.slice(1);
 
-  const { valueShop, dispatch } = useContext(ShopContext)!;
+  const { stateShop, dispatch } = useContext(ShopContext)!;
 
   const currentAction = getAction(category);
 
   const setCategory = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
     if (currentAction) dispatch(currentAction({ [name]: target.checked }));
   };
+
+  const currentStateName = getNameState(category)!;
 
   return (
     <div>
@@ -46,9 +63,9 @@ const FilterCategory = ({
         type="checkbox"
         name={name}
         onChange={setCategory}
-        checked={valueShop.selectedCompany[name]}
+        checked={stateShop[currentStateName][name]}
       ></input>
-      <label htmlFor={name} className="company__name">
+      <label htmlFor={name} className="category-name">
         {updateName}
       </label>
     </div>

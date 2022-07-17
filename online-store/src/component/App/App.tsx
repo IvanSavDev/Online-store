@@ -5,6 +5,8 @@ import Footer from '../../layout/Footer/Footer';
 import './App.scss';
 
 const App = () => {
+  // const [countGoodsInBasket, addToBacket] = useState<number>(0);
+
   return (
     <div className="container-app">
       <Header />

@@ -15,7 +15,7 @@ type CheckboxProps = {
 const Checkbox = ({ data }: CheckboxProps) => {
   const { id, width = 15, height = 15, name } = data;
 
-  const { valueShop, dispatch } = useContext(ShopContext)!;
+  const { stateShop, dispatch } = useContext(ShopContext)!;
 
   const setFavorite = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(chooseFavorite(target.checked));
@@ -30,7 +30,7 @@ const Checkbox = ({ data }: CheckboxProps) => {
         type="checkbox"
         style={{ width, height }}
         onChange={setFavorite}
-        checked={valueShop.selectedFavorite || false}
+        checked={stateShop.selectedFavorite || false}
       />
       <label
         htmlFor={id}

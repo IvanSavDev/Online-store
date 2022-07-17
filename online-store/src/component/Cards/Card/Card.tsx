@@ -1,11 +1,29 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import imgsPaths from '../../../data/imgsPaths';
 import { LaptopData } from '../../../data/typeData';
+import { ShopContext } from 'Src/context/ShopContext';
 
 const Card = (props: { dataItem: LaptopData }) => {
   const {
     dataItem: { company, name, count, year, color, price, id, ssd, cpu, ram },
   } = props;
+  const [inBasket, addInBasket] = useState<boolean>(false);
+  const {
+    stateBasket: { countGoodsInBasket, addGoodsInBasket },
+  } = useContext(ShopContext)!;
+
+  const addItem = () => {
+    if (countGoodsInBasket === 20 && !inBasket) {
+      alert('Извините, все слоты заполнены');
+      return;
+    }
+    addInBasket(!inBasket);
+    if (inBasket) {
+      addGoodsInBasket(-1);
+    } else {
+      addGoodsInBasket(1);
+    }
+  };
 
   return (
     <div className="card">
@@ -24,7 +42,9 @@ const Card = (props: { dataItem: LaptopData }) => {
         <li className="card__item">Price: {price}</li>
       </ul>
       <div className="card__cart-control">
-        <button className="card__btn card__btn-add">Add to Basket</button>
+        <button className="card__btn card__btn-add" onClick={addItem}>
+          {inBasket ? 'Delete from basket' : 'Add to Basket'}
+        </button>
       </div>
     </div>
   );

@@ -78,6 +78,9 @@ module.exports = {
 
   resolve: {
     extensions: ['.js', '.ts', '.tsx', '.jsx'],
+    alias: {
+      Src: path.resolve(__dirname, 'src/'),
+    },
   },
 
   plugins: [

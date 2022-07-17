@@ -1,17 +1,29 @@
 @import './Card/Card';
 
-.cards {
-  // display: flex;
-  // flex-wrap: wrap;
-  // justify-content: center;
-  // gap: 60px;
+.cards__list {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   grid-template-rows: repeat(auto-fill, minmax(200px, 1fr));
-  // grid-auto-flow: row;
   gap: 60px;
 }
 
-.cards-container {
+.cards {
   flex-grow: 1;
+
+  &__sort {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 30px;
+  }
+
+  &__sort-name {
+    display: flex;
+    gap: 7px;
+  }
+
+  &__sort-year {
+    display: flex;
+    gap: 7px;
+  }
 }

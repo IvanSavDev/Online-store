@@ -20,3 +20,19 @@
   }
 }
 
+.basket {
+  position: relative;
+}
+
+.backet__counts {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  border: 1px solid black;
+  border-radius: 50%;
+  text-align: center;
+  transform: translate(-100%, 0);
+}
+

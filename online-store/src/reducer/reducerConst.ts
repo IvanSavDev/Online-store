@@ -7,3 +7,5 @@ export const SELECT_PRICE = 'SELECT_PRICE';
 export const SELECT_YEAR_REALEASE = 'SELECT_YEAR_REALEASE';
 export const SELECT_COLORS = 'SELECT_COLORS';
 export const SELECT_FAVORITE = 'SELECT_FAVORITE';
+export const RESET = 'RESET';
+export const ADD_TO_BASKET = 'ADD_TO_BASKET';

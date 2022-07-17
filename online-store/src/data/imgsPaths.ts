@@ -13,10 +13,16 @@ import img12 from '../assets/computers/msiKatana.jpg';
 import img13 from '../assets/computers/msiModern.jpg';
 import img14 from '../assets/computers/macbookAir13.jpg';
 import img15 from '../assets/computers/macbookPro13.jpg';
+import img16 from '../assets/computers/msiBravo15.jpg';
+import img17 from '../assets/computers/huaweyE.jpg';
+import img18 from '../assets/computers/huaweyMatXPro.jpg';
+import img19 from '../assets/computers/honorMg15.jpg';
+import img20 from '../assets/computers/honorView.jpg';
+import img21 from '../assets/computers/honorMg16.jpg';
 
 interface ImgData {
-  id: number,
-  img: string,
+  id: number;
+  img: string;
 }
 
 const imgsPaths: Array<ImgData> = [
@@ -79,6 +85,30 @@ const imgsPaths: Array<ImgData> = [
   {
     id: 15,
     img: img15,
+  },
+  {
+    id: 16,
+    img: img16,
+  },
+  {
+    id: 17,
+    img: img17,
+  },
+  {
+    id: 18,
+    img: img18,
+  },
+  {
+    id: 19,
+    img: img19,
+  },
+  {
+    id: 20,
+    img: img20,
+  },
+  {
+    id: 21,
+    img: img21,
   },
 ];
 

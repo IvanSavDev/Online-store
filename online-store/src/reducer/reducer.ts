@@ -8,10 +8,13 @@ import {
   SELECT_YEAR_REALEASE,
   SELECT_PRICE,
   SELECT_FAVORITE,
+  RESET,
 } from './reducerConst';
 
 import { Actions } from './reducerActions';
-import { InitialState } from 'type/initialState';
+import { InitialStateType } from 'Src/type/initialStateType';
+import { initialState } from 'Src/data/initialState';
+import data from 'Src/data/data';
 
 // const initialState: InitialState = {
 //   selectedCompany: {},
@@ -26,9 +29,9 @@ import { InitialState } from 'type/initialState';
 // };
 
 export const reducerShop = (
-  state: InitialState,
+  state: InitialStateType,
   action: Actions
-): InitialState => {
+): InitialStateType => {
   switch (action.type) {
     case SELECT_COMPANY:
       return {
@@ -38,6 +41,7 @@ export const reducerShop = (
           ...action.payload,
         },
       };
+
     case SELECT_CPU:
       return {
         ...state,
@@ -46,6 +50,7 @@ export const reducerShop = (
           ...action.payload,
         },
       };
+
     case SELECT_RAM:
       return {
         ...state,
@@ -54,6 +59,7 @@ export const reducerShop = (
           ...action.payload,
         },
       };
+
     case SELECT_SSD:
       return {
         ...state,
@@ -62,24 +68,25 @@ export const reducerShop = (
           ...action.payload,
         },
       };
+
     case SELECT_COUNTS:
       return {
         ...state,
-        selectedCounts: {
-          ...state.selectedCounts,
-          ...action.payload,
-        },
+        selectedCounts: [...action.payload],
       };
+
     case SELECT_PRICE:
       return {
         ...state,
         selectedPrice: [...action.payload],
       };
+
     case SELECT_YEAR_REALEASE:
       return {
         ...state,
         selectedYearRealease: [...action.payload],
       };
+
     case SELECT_COLORS:
       return {
         ...state,
@@ -88,11 +95,18 @@ export const reducerShop = (
           ...action.payload,
         },
       };
+
     case SELECT_FAVORITE:
       return {
         ...state,
-        selectedFavorite: action.payload,
+        selectedFavorite: data
+          .filter((item) => item.favorite === action.payload)
+          .map((item) => item.name),
       };
+
+    case RESET:
+      return initialState;
+
     default:
       return state;
   }

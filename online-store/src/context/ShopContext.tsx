@@ -1,49 +1,34 @@
-import React, { createContext, useReducer } from 'react';
-import { InitialState } from '../type/initialState';
+import React, { createContext, useReducer, useState } from 'react';
+import { InitialStateType } from '../type/initialStateType';
 import { reducerShop } from '../reducer/reducer';
-import { Actions } from 'reducer/reducerActions';
+import { Actions } from '../reducer/reducerActions';
+import { initialState } from 'Src/data/initialState';
 
 export const ShopContext = createContext<null | {
-  valueShop: InitialState;
+  stateShop: InitialStateType;
+  stateBasket: {
+    countGoodsInBasket: number;
+    addGoodsInBasket: (count: number) => void;
+  };
   dispatch: React.Dispatch<Actions>;
 }>(null);
 
 export const Context = ({ children }: { children: React.ReactNode }) => {
-  const state: InitialState = {
-    selectedCompany: {
-      msi: false,
-      hp: false,
-      huawey: false,
-      honor: false,
-      lenovo: false,
-      acer: false,
-      asus: false,
-      apple: false,
-    },
-    selectedCpu: {
-      intel: false,
-      amd: false,
-      m1: false,
-    },
-    selectedRam: {
-      8: false,
-      16: false,
-    },
-    selectedSsd: {
-      256: false,
-      512: false,
-    },
-    selectedCounts: [],
-    selectedPrice: [],
-    selectedYearRealease: [],
-    selectedColors: {},
-    selectedFavorite: false,
+  const [stateShop, dispatch] = useReducer(reducerShop, initialState);
+  const [countGoodsInBasket, addToBasket] = useState<number>(0);
+
+  const addGoodsInBasket = (count: number): void => {
+    addToBasket(countGoodsInBasket + count);
   };
 
-  const [valueShop, dispatch] = useReducer(reducerShop, state);
-
   return (
-    <ShopContext.Provider value={{ valueShop, dispatch }}>
+    <ShopContext.Provider
+      value={{
+        stateShop,
+        dispatch,
+        stateBasket: { countGoodsInBasket, addGoodsInBasket },
+      }}
+    >
       {children}
     </ShopContext.Provider>
   );
