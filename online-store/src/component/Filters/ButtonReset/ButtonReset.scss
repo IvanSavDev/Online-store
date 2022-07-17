@@ -1,0 +1,14 @@
+.btn-reset {
+  width: 100px;
+  background-color: transparent;
+  border: 1px solid black;
+  cursor: pointer;
+}
+
+.btn-reset:hover {
+  background-color: $bisque;
+}
+
+.btn-reset:active {
+  transform: scale(1.1);
+}

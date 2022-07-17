@@ -1,6 +1,32 @@
-@import './Company/Company';
-
 .filters {
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
   flex: 0 0 250px;
   padding: 5px;
+
+  &__header {
+    margin-top: 0;
+  }
 }
+
+.category-header {
+  margin-bottom: 6px;
+}
+
+.favorite-items {
+  display: flex;
+  align-items: center;
+}
+
+.favorite-items__header {
+  display: inline-block;
+  margin: 0;
+  margin-right: 10px;
+}
+
+
+@import './Company/Company';
+@import './FilterColor/FilterColor';
+@import './Slider/Slider';
+@import './ButtonReset/ButtonReset';

@@ -5,9 +5,13 @@ export const Company = ({ companyName }: { companyName: string }) => {
 
   return (
     <div>
-      <label>
-        <input type="checkbox" name={companyName.toLowerCase()}></input>
-        <span className="name-company">{updateName}</span>
+      <input
+        id={companyName}
+        type="checkbox"
+        name={companyName.toLowerCase()}
+      ></input>
+      <label htmlFor={companyName} className="company__name">
+        {updateName}
       </label>
     </div>
   );

@@ -1,0 +1,30 @@
+.noUi-target {
+  height: 10px;
+}
+
+.noUi-horizontal .noUi-handle {
+  height: 18px;
+  width: 28px;
+  right: -14px;
+}
+
+.noUi-connect {
+  background: $bisque;
+}
+
+.noUi-handle:before,
+.noUi-handle:after {
+  height: 7px;
+  left: 12px;
+  top: 5px
+}
+
+.noUi-handle:after {
+  left: 15px;
+}
+
+.count-range {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 5px;
+}
