@@ -19,5 +19,21 @@
   &__list {
     margin: 0;
     padding: 0;
+    margin-bottom: 10px;
+  }
+
+  &__item {
+    padding-bottom: 2px;
+  }
+
+  &__btn {
+    border-radius: 5px;
+    border: 1px solid black;
+    background-color: $bisque;
+    cursor: pointer;
+  }
+
+  &__btn:active {
+    transform: scale(1.1);
   }
 }

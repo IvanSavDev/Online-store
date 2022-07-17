@@ -4,7 +4,7 @@ import Main from '../../layout/Main/Main';
 import Footer from '../../layout/Footer/Footer';
 import './App.scss';
 
-function App() {
+const App = () => {
   return (
     <div className="container-app">
       <Header />
@@ -12,6 +12,6 @@ function App() {
       <Footer className="footer" />
     </div>
   );
-}
+};
 
 export default App;
