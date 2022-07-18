@@ -1,18 +1,17 @@
-import { InitialStateType } from 'Src/type/initialStateType';
-import { data } from './data';
+import { InitialStateFiltersType } from '../type/initialStateFiltersType';
+// import { data } from './data';
 
-export const initialState: InitialStateType = {
-  selectedCompany: data.map((item) => item.company),
-  selectedCpu: data.map((item) => item.cpu),
-  selectedRam: data.map((item) => item.ram),
-  selectedSsd: data.map((item) => item.ssd),
+export const initialStateFilters: InitialStateFiltersType = {
+  selectedCompany: [],
+  selectedCpu: [],
+  selectedRam: [],
+  selectedSsd: [],
   selectedCounts: [0, 10],
   selectedPrice: [0, 120000],
   selectedYearRealease: [2014, 2022],
-  selectedColors: data.map((item) => item.color),
-  selectedFavorite: data
-    .filter((item) => item.favorite === true)
-    .map((item) => item.name),
+  selectedColors: [],
+  selectedFavorite: [],
+  search: '',
 };
 
 // export const initialState: InitialStateType = {

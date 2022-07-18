@@ -12,4 +12,4 @@ export interface LaptopData {
   favorite: boolean;
   [key: string]: string | number | boolean;
   // imgName: string;
-};
+}
