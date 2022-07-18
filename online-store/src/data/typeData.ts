@@ -11,5 +11,4 @@ export interface LaptopData {
   price: number;
   favorite: boolean;
   [key: string]: string | number | boolean;
-  // imgName: string;
 }

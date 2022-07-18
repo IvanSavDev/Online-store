@@ -13,7 +13,6 @@ export const data: Array<LaptopData> = [
     color: 'grey',
     price: 42500,
     favorite: true,
-    // imgName: 'hpPav14',
   },
   {
     id: 2,
@@ -27,7 +26,6 @@ export const data: Array<LaptopData> = [
     color: 'green',
     price: 75000,
     favorite: true,
-    // imgName: 'huawey14',
   },
   {
     id: 3,
@@ -41,7 +39,6 @@ export const data: Array<LaptopData> = [
     color: 'grey',
     price: 65000,
     favorite: false,
-    // imgName: 'huaweyD14',
   },
   {
     id: 4,
@@ -55,7 +52,6 @@ export const data: Array<LaptopData> = [
     color: 'blue',
     price: 62000,
     favorite: false,
-    // imgName: 'lenovoGaming',
   },
   {
     id: 5,
@@ -69,7 +65,6 @@ export const data: Array<LaptopData> = [
     color: 'grey',
     price: 55000,
     favorite: false,
-    // imgName: 'honorX',
   },
   {
     id: 6,
@@ -83,7 +78,6 @@ export const data: Array<LaptopData> = [
     color: 'black',
     price: 45000,
     favorite: true,
-    // imgName: 'acerA715',
   },
   {
     id: 7,
@@ -97,7 +91,6 @@ export const data: Array<LaptopData> = [
     color: 'black',
     price: 42000,
     favorite: false,
-    // imgName: 'asusR522',
   },
   {
     id: 8,
@@ -111,7 +104,6 @@ export const data: Array<LaptopData> = [
     color: 'green',
     price: 37000,
     favorite: false,
-    // imgName: 'acerAspire3',
   },
   {
     id: 9,
@@ -125,7 +117,6 @@ export const data: Array<LaptopData> = [
     color: 'blue',
     price: 48000,
     favorite: true,
-    // imgName: 'honorMagBookX15',
   },
   {
     id: 10,
@@ -139,7 +130,6 @@ export const data: Array<LaptopData> = [
     color: 'green',
     price: 95000,
     favorite: true,
-    // imgName: 'huaweyMate14s',
   },
   {
     id: 11,
@@ -153,7 +143,6 @@ export const data: Array<LaptopData> = [
     color: 'grey',
     price: 78000,
     favorite: false,
-    // imgName: 'hpPav14',
   },
   {
     id: 12,
@@ -167,7 +156,6 @@ export const data: Array<LaptopData> = [
     color: 'black',
     price: 81000,
     favorite: true,
-    // imgName: 'msiKatana',
   },
   {
     id: 13,
@@ -181,7 +169,6 @@ export const data: Array<LaptopData> = [
     color: 'black',
     price: 61000,
     favorite: false,
-    // imgName: 'msiModern'
   },
   {
     id: 14,
@@ -195,7 +182,6 @@ export const data: Array<LaptopData> = [
     color: 'grey',
     price: 90000,
     favorite: true,
-    // imgName: 'macbookAir13',
   },
   {
     id: 15,
@@ -209,7 +195,6 @@ export const data: Array<LaptopData> = [
     color: 'grey',
     price: 110000,
     favorite: true,
-    // imgName: 'macbookPro13',
   },
   {
     id: 16,
