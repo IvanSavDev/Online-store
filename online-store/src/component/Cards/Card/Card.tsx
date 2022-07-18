@@ -1,35 +1,45 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import imgsPaths from '../../../data/imgsPaths';
 import { LaptopData } from '../../../data/typeData';
 import { ShopContext } from 'Src/context/ShopContext';
 
 const Card = (props: { dataItem: LaptopData }) => {
   const {
-    dataItem: { company, name, count, year, color, price, id, ssd, cpu, ram },
+    dataItem: {
+      company,
+      name,
+      count,
+      year,
+      color,
+      price,
+      id,
+      ssd,
+      cpu,
+      ram,
+      favorite,
+    },
   } = props;
-  const [inBasket, addInBasket] = useState<boolean>(false);
   const {
-    stateBasket: { countGoodsInBasket, addGoodsInBasket },
+    stateBasket: { dataOfGoodsInBasket, addGoodsInBasket },
   } = useContext(ShopContext)!;
 
   const addItem = () => {
-    if (countGoodsInBasket === 20 && !inBasket) {
+    if (dataOfGoodsInBasket.length === 20 && !dataOfGoodsInBasket[name]) {
       alert('Извините, все слоты заполнены');
       return;
     }
-    addInBasket(!inBasket);
-    if (inBasket) {
-      addGoodsInBasket(-1);
+    if (!dataOfGoodsInBasket[name]) {
+      addGoodsInBasket(name, 'add');
     } else {
-      addGoodsInBasket(1);
+      addGoodsInBasket(name, 'delete');
     }
   };
 
   return (
     <div className="card">
       <h3 className="card__header">{name}</h3>
-      <div className="img-card">
-        <img src={imgsPaths[id - 1].img} alt={name} />
+      <div className="card__img-container">
+        <img className="card__img" src={imgsPaths[id - 1].img} alt={name} />
       </div>
       <ul className="card__list">
         <li className="card__item">Company: {company}</li>
@@ -40,10 +50,13 @@ const Card = (props: { dataItem: LaptopData }) => {
         <li className="card__item">CPU: {cpu}</li>
         <li className="card__item">SSD: {ssd}</li>
         <li className="card__item">Price: {price}</li>
+        <li className="card__item">Favorite: {favorite ? 'yes' : 'no'}</li>
       </ul>
       <div className="card__cart-control">
         <button className="card__btn card__btn-add" onClick={addItem}>
-          {inBasket ? 'Delete from basket' : 'Add to Basket'}
+          {dataOfGoodsInBasket[name] === 1
+            ? 'Delete from basket'
+            : 'Add to Basket'}
         </button>
       </div>
     </div>

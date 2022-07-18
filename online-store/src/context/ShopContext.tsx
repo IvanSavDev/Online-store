@@ -1,32 +1,72 @@
 import React, { createContext, useReducer, useState } from 'react';
-import { InitialStateType } from '../type/initialStateType';
+import { DataShop, GoodsBasket, ShopContextType } from './ShopContextTypes';
 import { reducerShop } from '../reducer/reducer';
-import { Actions } from '../reducer/reducerActions';
-import { initialState } from 'Src/data/initialState';
+import { initialStateFilters } from 'Src/data/initialStateFilters';
+import { getDataFromStorage } from 'Src/localStorage/apiLocalStorage';
 
-export const ShopContext = createContext<null | {
-  stateShop: InitialStateType;
-  stateBasket: {
-    countGoodsInBasket: number;
-    addGoodsInBasket: (count: number) => void;
-  };
-  dispatch: React.Dispatch<Actions>;
-}>(null);
+export const ShopContext = createContext<ShopContextType>(null);
 
 export const Context = ({ children }: { children: React.ReactNode }) => {
-  const [stateShop, dispatch] = useReducer(reducerShop, initialState);
-  const [countGoodsInBasket, addToBasket] = useState<number>(0);
+  let startData: DataShop = {
+    stateFilters: initialStateFilters,
+    stateBasket: { length: 0 },
+    sortCategory: 'name-decrease',
+  };
+  const [loadStorage, changeLoadStorage] = useState(false);
+  if (!loadStorage) {
+    changeLoadStorage(true);
+    const dataFromStorage = getDataFromStorage();
+    if (dataFromStorage) {
+      const copyData: DataShop = {
+        ...dataFromStorage,
+        stateFilters: {
+          ...dataFromStorage.stateFilters,
+          search: '',
+        },
+      };
+      startData = copyData;
+    }
+  }
+  const [stateShop] = useState(startData);
+  const [dataOfGoodsInBasket, addToBasket] = useState<GoodsBasket>(
+    stateShop.stateBasket
+  );
 
-  const addGoodsInBasket = (count: number): void => {
-    addToBasket(countGoodsInBasket + count);
+  const [stateFilters, dispatch] = useReducer(
+    reducerShop,
+    stateShop.stateFilters
+  );
+
+  const addGoodsInBasket = (name: string, action: string): void => {
+    const currentCount = action === 'add' ? 1 : -1;
+    addToBasket((prevState) => {
+      const copyState = { ...prevState };
+      if (action === 'add') {
+        return {
+          ...copyState,
+          [name]: 1,
+          length: prevState.length + currentCount,
+        };
+      } else {
+        delete copyState[name];
+        return {
+          ...copyState,
+          length: prevState.length + currentCount,
+        };
+      }
+    });
   };
 
   return (
     <ShopContext.Provider
       value={{
-        stateShop,
+        stateFilters,
         dispatch,
-        stateBasket: { countGoodsInBasket, addGoodsInBasket },
+        stateBasket: {
+          dataOfGoodsInBasket,
+          addGoodsInBasket,
+        },
+        stateSortCategory: stateShop.sortCategory,
       }}
     >
       {children}

@@ -1,134 +1,132 @@
 import React, { useContext, useEffect, useState } from 'react';
 import Card from './Card/Card';
-// import { ShopContext } from '../../context/ShopContext';
 import { LaptopData } from '../../data/typeData';
 import SortCards from './SortCards/SortCards';
 import { ShopContext } from 'Src/context/ShopContext';
-// import { InitialStateType } from 'Src/type/initialStateType';
-import dataItems from '../../data/data';
+import { InitialStateFiltersType } from 'Src/type/initialStateFiltersType';
+import { setDataFromStorage } from 'Src/localStorage/apiLocalStorage';
+import { CardsProps } from './CardsTypes';
 
-// type CardsProps = {
-//   dataItems: Array<LaptopData>;
-// };
+const getFilteredCards = (
+  companyData: LaptopData,
+  currentState: InitialStateFiltersType
+): boolean => {
+  const { company, count, year, color, price, ssd, cpu, ram, name } =
+    companyData;
+  const {
+    selectedCompany,
+    selectedCpu,
+    selectedRam,
+    selectedSsd,
+    selectedCounts: [minCount, maxCount],
+    selectedPrice: [minPrice, maxPrice],
+    selectedYearRealease: [minYear, maxYear],
+    selectedColors,
+    selectedFavorite,
+    search,
+  } = currentState;
 
-// const isSuitableParam = (
-//   dataItem: LaptopData,
-//   filtersParam: InitialStateType
-// ): boolean => {
-//   const { company, count, year, color, price, ssd, cpu, ram, favorite } =
-//     dataItem;
-//   const {
-//     selectedCompany,
-//     selectedCpu,
-//     selectedRam,
-//     selectedSsd,
-//     selectedCounts: [minCount, maxCount],
-//     selectedPrice: [minPrice, maxPrice],
-//     selectedYearRealease: [minYear, maxYear],
-//     selectedColors,
-//     selectedFavorite,
-//   } = filtersParam;
+  if (!selectedCompany.includes(company) && selectedCompany.length !== 0) {
+    return false;
+  }
+  if (!selectedCpu.includes(cpu) && selectedCpu.length !== 0) {
+    return false;
+  }
+  if (!selectedRam.includes(String(ram)) && selectedRam.length !== 0) {
+    return false;
+  }
+  if (!selectedSsd.includes(String(ssd)) && selectedSsd.length !== 0) {
+    return false;
+  }
+  if (!selectedColors.includes(color) && selectedColors.length !== 0) {
+    return false;
+  }
+  if (selectedFavorite.length !== 0 && !selectedFavorite.includes(name)) {
+    return false;
+  }
+  if (search && !name.toLowerCase().includes(search.toLowerCase())) {
+    return false;
+  }
+  if (minCount !== undefined && maxCount !== undefined) {
+    if (!(minCount <= count && maxCount >= count)) {
+      return false;
+    }
+  }
+  if (minPrice !== undefined && maxPrice !== undefined) {
+    if (!(minPrice <= price && maxPrice >= price)) {
+      return false;
+    }
+  }
+  if (minYear !== undefined && maxYear !== undefined) {
+    if (!(minYear <= year && maxYear >= year)) {
+      return false;
+    }
+  }
+  return true;
+};
 
-//   // const checkRange = (minParam: number, maxParam: number, param: number) => {
-//   //   if (minParam !== undefined && maxParam !== undefined) {
-//   //     if (!(minParam < param && maxParam > param)) {
-//   //       return false;
-//   //     }
-//   //   }
-//   // };
-//   if (selectedCompany[company]) {
-//     return false;
-//   }
-//   if (!selectedCpu[cpu]) {
-//     return false;
-//   }
-//   if (!selectedRam[ram]) {
-//     return false;
-//   }
-//   if (!selectedSsd[ssd]) {
-//     return false;
-//   }
-//   if (minCount !== undefined && maxCount !== undefined) {
-//     if (!(minCount < count && maxCount > count)) {
-//       return false;
-//     }
-//   }
-//   if (minPrice !== undefined && maxPrice !== undefined) {
-//     if (!(minPrice < price && maxPrice > price)) {
-//       return false;
-//     }
-//   }
-//   if (minYear !== undefined && maxYear !== undefined) {
-//     if (!(minYear < year && maxYear > year)) {
-//       return false;
-//     }
-//   }
-//   if (!selectedColors[color]) {
-//     return false;
-//   }
-//   if (!selectedFavorite === favorite) {
-//     return false;
-//   }
-//   return true;
-// };
+const getSortedCards =
+  (sortByCategory: string) =>
+  (firstElement: LaptopData, secondElement: LaptopData): number => {
+    if (sortByCategory === 'name-decrease') {
+      if (firstElement.name > secondElement.name) {
+        return 1;
+      }
+      if (firstElement.name < secondElement.name) {
+        return -1;
+      }
+    }
+    if (sortByCategory === 'name-increase') {
+      if (firstElement.name < secondElement.name) {
+        return 1;
+      }
+      if (firstElement.name > secondElement.name) {
+        return -1;
+      }
+    }
+    if (sortByCategory === 'year-decrease') {
+      return secondElement.year - firstElement.year;
+    }
+    if (sortByCategory === 'year-increase') {
+      return firstElement.year - secondElement.year;
+    }
+    return 0;
+  };
 
-const Cards = () => {
-  const [sortByName, setSortByName] = useState<string>('decrease');
-  const [sortByYear, setSortByYear] = useState<string>('decrease');
-  const [firstRender, setFirstRender] = useState<number>(2);
-  const [currentCards, setCurrentCards] = useState<[] | Array<LaptopData>>(
-    dataItems
-  );
-  const { stateShop } = useContext(ShopContext)!;
+const Cards: React.FC<CardsProps> = ({ dataItems }) => {
+  const { stateFilters, stateBasket, stateSortCategory } =
+    useContext(ShopContext)!;
 
-  // const newAr = dataItems
-  //   .filter((dataItem) => isSuitableParam(dataItem, stateShop))
-  //   .sort((a, b) => {
-  //     if (a.name < b.name || a.year - b.year) {
-  //       return 1;
-  //     }
-  //     if (a.name > b.name || a.year - b.year) {
-  //       return -1;
-  //     }
-  //     return 0;
-  //   })
-  //   .map((item) => {
-  //     return <Card dataItem={item}></Card>;
-  //   });
+  const [sortCategory, setSortCategory] = useState<string>(stateSortCategory);
 
   useEffect(() => {
-    console.log(123);
-    if (firstRender === 0) {
-      console.log(0);
-      const filteredData = dataItems;
-      // .filter((dataItem) => isSuitableParam(dataItem, stateShop))
-      // .sort((a, b) => {
-      //   if (a.name < b.name || a.year - b.year) {
-      //     return 1;
-      //   }
-      //   if (a.name > b.name || a.year - b.year) {
-      //     return -1;
-      //   }
-      //   return 0;
-      // });
-      setCurrentCards(filteredData);
-    } else {
-      setFirstRender((fs) => fs - 1);
-    }
-  }, [stateShop]);
+    const generalState = {
+      stateFilters,
+      stateBasket: stateBasket.dataOfGoodsInBasket,
+      sortCategory,
+    };
+    setDataFromStorage(generalState);
+  }, [stateFilters, stateBasket, sortCategory]);
+
+  const filteredAndSortedCards = dataItems
+    .filter((dataItem) => getFilteredCards(dataItem, stateFilters))
+    .sort(getSortedCards(sortCategory))
+    .map((item) => <Card key={item.id} dataItem={item}></Card>);
 
   return (
     <div className="cards">
       <SortCards
         dataForSort={{
-          name: { sortByName, setSortByName },
-          year: { sortByYear, setSortByYear },
+          category: { sortCategory, setSortCategory },
         }}
       ></SortCards>
       <div className="cards__list">
-        {currentCards.map((item) => (
-          <Card key={item.id} dataItem={item}></Card>
-        ))}
+        {filteredAndSortedCards}
+        {filteredAndSortedCards.length === 0 ? (
+          <h3>Sorry, no matches found</h3>
+        ) : (
+          ''
+        )}
       </div>
     </div>
   );

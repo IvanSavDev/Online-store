@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { useContext, useEffect, useRef } from 'react';
 import { LaptopData } from '../../data/typeData';
 import { Slider } from './Slider/Slider';
 import FilterCategory from './FilterCategory/FilterCategory';
 import FilterColor from './FilterColor/FilterColor';
-import Checkbox from './CheckboxSample/Checkbox';
-import ButtonReset from './ButtonReset/ButtonReset';
+// import Checkbox from './CheckboxSample/Checkbox';
 import 'nouislider/dist/nouislider.css';
-// import data from 'Src/data/data';
+import { ShopContext } from 'Src/context/ShopContext';
+import { setValueSearch } from 'Src/reducer/reducerActions';
+import crossImg from 'Src/assets/icons/cross.png';
+import { resetState } from 'Src/reducer/reducerActions';
+import { chooseFavorite } from 'Src/reducer/reducerActions';
 
 type FilterProps = {
   dataItems: Array<LaptopData>;
@@ -29,11 +32,41 @@ const Filters: React.FC<FilterProps> = ({ dataItems }) => {
   const uniqCpu = getUniqName(dataItems, 'cpu');
   const uniqRam = getUniqName(dataItems, 'ram');
   const uniqSsd = getUniqName(dataItems, 'ssd');
+  const inputSearch = useRef<HTMLInputElement>(null!);
+  const {
+    stateFilters: { search },
+    dispatch,
+  } = useContext(ShopContext)!;
+
+  useEffect(() => {
+    inputSearch.current.focus();
+  }, []);
+
+  const addValueSearch = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
+    if (setValueSearch) dispatch(setValueSearch(target.value));
+  };
+
+  const resetInput = () => {
+    dispatch(setValueSearch(''));
+  };
 
   return (
     <div className="filters">
-      <input type="text" placeholder="search..." />
-      <div>
+      <div className="category-search">
+        <input
+          className="category-search__text"
+          ref={inputSearch}
+          value={search}
+          type="text"
+          placeholder="search..."
+          onChange={addValueSearch}
+          autoComplete="off"
+        />
+        <button className="category-search__btn-reset" onClick={resetInput}>
+          <img className="category-search__btn-img" src={crossImg} alt="" />
+        </button>
+      </div>
+      <div className="category-company">
         <h3 className="filters__header category-header">Company:</h3>
         {uniqCompaniesName.map((companyName) => {
           if (typeof companyName === 'string')
@@ -46,7 +79,7 @@ const Filters: React.FC<FilterProps> = ({ dataItems }) => {
             );
         })}
       </div>
-      <div>
+      <div className="category-cpu">
         <h3 className="filters__header category-header">CPU:</h3>
         {uniqCpu.map((cpuName) => {
           if (typeof cpuName === 'string')
@@ -55,7 +88,7 @@ const Filters: React.FC<FilterProps> = ({ dataItems }) => {
             );
         })}
       </div>
-      <div>
+      <div className="category-ram">
         <h3 className="filters__header category-header">RAM(gb):</h3>
         {uniqRam.map((ramName) => {
           const ramNameStr = String(ramName);
@@ -69,55 +102,75 @@ const Filters: React.FC<FilterProps> = ({ dataItems }) => {
             );
         })}
       </div>
-      <div>
+      <div className="category-ssd">
         <h3 className="filters__header category-header">SSD(gb):</h3>
-        {uniqSsd.map((ramName) => {
-          const ramNameStr = String(ramName);
-          if (typeof ramNameStr === 'string')
+        {uniqSsd.map((ssdName) => {
+          const ssdNameStr = String(ssdName);
+          if (typeof ssdNameStr === 'string')
             return (
               <FilterCategory
-                key={ramNameStr}
-                name={ramNameStr}
+                key={ssdNameStr}
+                name={ssdNameStr}
                 category={'ssd'}
               />
             );
         })}
       </div>
-      <div>
+      <div className="category-counts">
         <h3 className="filters__header">Counts:</h3>
         <Slider
-          // range={{ min: 0, max: 10 }}
           step={1}
           categorySlider={'counts'}
+          range={{ min: 0, max: 10 }}
         />
       </div>
-      <div>
+      <div className="category-price">
         <h3 className="filters__header">Price:</h3>
         <Slider
-          // range={{ min: 0, max: 120000 }}
           step={5000}
           categorySlider={'price'}
+          range={{ min: 0, max: 120000 }}
         />
       </div>
-      <div>
+      <div className="category-year">
         <h3 className="filters__header">Release year:</h3>
         <Slider
-          // range={{ min: 2014, max: 2022 }}
           step={1}
           categorySlider={'year'}
+          range={{ min: 2014, max: 2022 }}
         />
       </div>
-      <div className="colors">
-        <h3 className="filters__header colors__header">Color:</h3>
+      <div className="category-colors">
+        <h3 className="filters__header category-colors__header">Color:</h3>
         <FilterColor />
       </div>
-      <div className="favorite-items">
-        <h3 className="filters__header favorite-items__header">
+      <div className="category-favorite">
+        <label
+          htmlFor="favorite"
+          className="filters__header category-favorite__header"
+        >
           Only favorite:
-        </h3>
-        <Checkbox data={{ id: '1', name: 'favorite' }}></Checkbox>
+        </label>
+        <input
+          id="favorite"
+          type="checkbox"
+          onChange={({ target }: React.ChangeEvent<HTMLInputElement>) => {
+            dispatch(chooseFavorite(target.checked));
+          }}
+        ></input>
       </div>
-      <ButtonReset></ButtonReset>
+      <button
+        className="btn-reset btn-reset-filters"
+        onClick={() => dispatch(resetState())}
+      >
+        Reset filters
+      </button>
+      <button
+        className="btn-reset btn-reset-options"
+        onClick={() => localStorage.removeItem('stateShop')}
+      >
+        Reset options
+      </button>
     </div>
   );
 };

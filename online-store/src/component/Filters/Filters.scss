@@ -10,22 +10,153 @@
   }
 }
 
+@media (max-width: 768px) {
+  .filters {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-areas: 'search search search search' 
+                        'company cpu ram ssd'
+                        'colors favorite favorite favorite'
+                        'counts counts counts counts'
+                        'price price price price'
+                        'year year year year'
+                        'btnResetFilters btnResetOptions btnResetOptions btnResetOptions'
+  }
+}
+
+@media (max-width: 500px) {
+  .filters {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-areas: 'search search'
+                        'company cpu'
+                        'ssd ram'
+                        'colors favorite'
+                        'counts counts'
+                        'price price'
+                        'year year'
+                        'btnResetFilters btnResetOptions'
+  }
+}
+
+.category-search {
+  grid-area: search;
+}
+
+.category-company {
+  grid-area: company;
+}
+
+.category-cpu {
+  grid-area: cpu;
+}
+
+.category-ram {
+  grid-area: ram;
+}
+
+.category-ssd {
+  grid-area: ssd;
+}
+
+.category-color {
+  grid-area: colors;
+}
+
+.category-counts {
+  grid-area: counts;
+}
+
+.category-price {
+  grid-area: price;
+}
+
+.category-year {
+  grid-area: year;
+}
+.category-favorite {
+  grid-area: favorite;
+}
+
+
+
 .category-header {
   margin-bottom: 6px;
 }
 
-.favorite-items {
+.category-favorite {
   display: flex;
   align-items: center;
 }
 
-.favorite-items__header {
+.category-favorite__header {
   display: inline-block;
   margin: 0;
   margin-right: 10px;
+  font-size: 1.17em;
+  font-weight: bold;
+}
+
+.category-search {
+  position: relative;
+}
+
+.category-search__text {
+  width: 100%;
+}
+
+.category-search__btn-reset {
+  position: absolute;
+  top: 50%;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  transform: translate(-150%, -50%);
+}
+
+
+.category-search__btn-img {
+  width: 100%;
+  height: 100%;
+}
+
+.category-search__btn-img:active {
+  transform: scale(1.2);
+}
+
+.btn-reset {
+  width: 100px;
+  background-color: transparent;
+  border: 1px solid black;
+  cursor: pointer;
+}
+
+.btn-reset:hover {
+  background-color: $bisque;
+}
+
+.btn-reset:active {
+  transform: scale(1.1);
+}
+
+.btn-reset-filters {
+  grid-area: btnResetFilters;
+}
+
+.btn-reset-options {
+  grid-area: btnResetOptions;
+}
+
+@media (max-width: 500px) {
+  .btn-reset {
+    justify-self: center;
+  }
 }
 
 @import './FilterCategory/FilterCategory';
 @import './FilterColor/FilterColor';
 @import './Slider/Slider';
-@import './ButtonReset/ButtonReset';
+// @import './ButtonReset/ButtonReset';

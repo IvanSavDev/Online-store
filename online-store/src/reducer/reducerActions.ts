@@ -10,6 +10,7 @@ import {
   SELECT_FAVORITE,
   RESET,
   ADD_TO_BASKET,
+  VALUE_SEARCH,
 } from './reducerConst';
 
 interface IChooseCompany {
@@ -67,6 +68,11 @@ interface IAddToBacket {
   payload: number;
 }
 
+interface ISetValue {
+  type: typeof VALUE_SEARCH;
+  payload: string;
+}
+
 interface IResetState {
   type: typeof RESET;
 }
@@ -90,7 +96,8 @@ export type Actions =
   | IChoosePrice
   | IChooseFavorite
   | IResetState
-  | IAddToBacket;
+  | IAddToBacket
+  | ISetValue;
 
 export const chooseCompany = (dataCompany: DataCheckbox): IChooseCompany => ({
   type: SELECT_COMPANY,
@@ -136,6 +143,10 @@ export const resetState = (): IResetState => ({
 export const addToBacket = (countGoods: CountGoodsType): IAddToBacket => ({
   type: ADD_TO_BASKET,
   payload: countGoods,
+});
+export const setValueSearch = (valueSearch: string): ISetValue => ({
+  type: VALUE_SEARCH,
+  payload: valueSearch,
 });
 
 // type ISelectAction = {

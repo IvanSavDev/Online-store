@@ -8,7 +8,7 @@ const Main = () => {
     <main className="main">
       <div className="layout-width main-container">
         <Filters dataItems={dataItems} />
-        <Cards />
+        <Cards dataItems={dataItems} />
       </div>
     </main>
   );

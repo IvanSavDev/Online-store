@@ -9,10 +9,10 @@ import * as noUiSlider from 'nouislider';
 import 'nouislider/dist/nouislider.css';
 
 type SliderProps = {
-  // range: {
-  //   min: number;
-  //   max: number;
-  // };
+  range: {
+    min: number;
+    max: number;
+  };
   step: number;
   categorySlider: string;
 };
@@ -42,21 +42,21 @@ const getStateName = (nameCategory: string) => {
 };
 
 export const Slider = ({
-  // range: { min, max },
+  range: { min, max },
   step,
   categorySlider,
 }: SliderProps) => {
   const ref = useRef() as React.MutableRefObject<HTMLDivElement>;
-  const { stateShop, dispatch } = useContext(ShopContext)!;
+  const { stateFilters, dispatch } = useContext(ShopContext)!;
 
   const currentCategoryState = getStateName(categorySlider)!;
-  const [min, max] = stateShop[currentCategoryState];
+  const [currentMin, currentMax] = stateFilters[currentCategoryState];
 
   useEffect(() => {
     const slider = ref.current as noUiSlider.target;
-    if (slider && min !== undefined && max !== undefined) {
+    if (slider && currentMin !== undefined && currentMax !== undefined) {
       noUiSlider.create(slider, {
-        start: [min, max],
+        start: [currentMin, currentMax],
         connect: true,
         step,
         range: {
@@ -66,9 +66,9 @@ export const Slider = ({
       });
       const curSlider = slider.noUiSlider!;
       curSlider.on('update', () => {
-        const [min, max] = curSlider.get() as Array<string>;
+        const [minFromSlider, maxFromSlider] = curSlider.get() as Array<string>;
         const currentAction = chooseAction(categorySlider)!;
-        dispatch(currentAction([Number(min), Number(max)]));
+        dispatch(currentAction([Number(minFromSlider), Number(maxFromSlider)]));
       });
     }
   }, [ref]);
@@ -77,19 +77,19 @@ export const Slider = ({
     const slider = ref.current as noUiSlider.target;
     const curSlider = slider.noUiSlider!;
     const [minSlider, maxSlider] = curSlider.get() as Array<string>;
-    if (Number(minSlider) !== min || Number(maxSlider) !== max) {
-      if (min !== undefined && max !== undefined) {
-        curSlider.set([min, max]);
+    if (Number(minSlider) !== currentMin || Number(maxSlider) !== currentMax) {
+      if (currentMin !== undefined && currentMax !== undefined) {
+        curSlider.set([currentMin, currentMax]);
       }
     }
-  }, [min, max]);
+  }, [currentMin, currentMax]);
 
   return (
     <div>
       <div ref={ref}></div>
       <div className="count-range">
-        <span>{min}</span>
-        <span>{max}</span>
+        <span>{currentMin}</span>
+        <span>{currentMax}</span>
       </div>
     </div>
   );

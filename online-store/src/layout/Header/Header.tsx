@@ -5,7 +5,7 @@ import imgBacket from '../../assets/icons/wicker-basket.png';
 
 const Header = () => {
   const {
-    stateBasket: { countGoodsInBasket },
+    stateBasket: { dataOfGoodsInBasket },
   } = useContext(ShopContext)!;
 
   return (
@@ -16,7 +16,7 @@ const Header = () => {
           <span className="logo_name">Online store</span>
         </div>
         <div className="basket">
-          <div className="backet__counts">{countGoodsInBasket}</div>
+          <div className="backet__counts">{dataOfGoodsInBasket.length}</div>
           <img src={imgBacket} alt="shopping basket" />
         </div>
       </div>

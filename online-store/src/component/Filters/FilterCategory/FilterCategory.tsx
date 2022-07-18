@@ -46,7 +46,7 @@ const FilterCategory = ({
 }) => {
   const updateName = name.charAt(0).toUpperCase() + name.slice(1);
 
-  const { stateShop, dispatch } = useContext(ShopContext)!;
+  const { stateFilters, dispatch } = useContext(ShopContext)!;
 
   const currentAction = getAction(category);
 
@@ -55,7 +55,6 @@ const FilterCategory = ({
   };
 
   const currentStateName = getNameState(category)!;
-
   return (
     <div>
       <input
@@ -63,7 +62,7 @@ const FilterCategory = ({
         type="checkbox"
         name={name}
         onChange={setCategory}
-        checked={stateShop[currentStateName][name]}
+        checked={stateFilters[currentStateName].includes(name)}
       ></input>
       <label htmlFor={name} className="category-name">
         {updateName}
