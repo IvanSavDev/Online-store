@@ -37,7 +37,11 @@ const FilterSearch = (): JSX.Element => {
         autoComplete="off"
       />
       <button className="category-search__btn-reset" onClick={resetInput}>
-        <img className="category-search__btn-img" src={crossImg} alt="" />
+        <img
+          className="category-search__btn-img"
+          src={crossImg}
+          alt="reset input"
+        />
       </button>
     </div>
   );

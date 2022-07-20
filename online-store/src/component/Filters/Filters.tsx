@@ -8,9 +8,10 @@ import { resetState } from 'Src/reducer/reducerActions';
 import { FilterProps } from './FiltersTypes';
 import FilterSearch from './FilterSearch/FilterSearch';
 import MergeCategories from './MergeCategories/MergeCategories';
+import { ShopContextType } from 'Src/context/ShopContextTypes';
 
 const Filters = ({ dataItems }: FilterProps): JSX.Element => {
-  const { dispatch } = useContext(ShopContext)!;
+  const { dispatch } = useContext<ShopContextType>(ShopContext)!;
 
   return (
     <div className="filters">

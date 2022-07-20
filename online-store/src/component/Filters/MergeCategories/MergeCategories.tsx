@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { getUniqNames } from './getUniqNames';
 import FilterCategory from 'Src/component/Filters/MergeCategories/FilterCategory/FilterCategory';
 import { FilterProps } from 'Src/component/Filters/FiltersTypes';
 import { MergeCategoryType, IDataForCategory } from './MergeCategoriesTypes';
+import { ShopContext } from 'Src/context/ShopContext';
 import {
   CATEGORY_COMPANY,
   CATEGORY_CPU,
@@ -40,6 +41,8 @@ const MergeCategories = ({ dataItems }: FilterProps): JSX.Element => {
     },
   };
 
+  const context = useContext(ShopContext)!;
+
   const keysMergeCategory = Object.keys(
     dataForCategory
   ) as Array<MergeCategoryType>;
@@ -57,6 +60,7 @@ const MergeCategories = ({ dataItems }: FilterProps): JSX.Element => {
               name={name}
               action={dataForCategory[categoryParam].action}
               nameState={dataForCategory[categoryParam].stateName}
+              context={context}
             />
           ))}
         </div>

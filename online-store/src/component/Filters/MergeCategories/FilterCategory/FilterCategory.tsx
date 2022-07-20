@@ -1,18 +1,16 @@
-import React, { useContext } from 'react';
-import { ShopContext } from 'Src/context/ShopContext';
+import React from 'react';
 import { FilterCategoryProps } from './FilterCategoryTypes';
 
 const FilterCategory = ({
   name,
   action,
   nameState,
+  context,
 }: FilterCategoryProps): JSX.Element => {
-  const { stateFilters, dispatch } = useContext(ShopContext)!;
-
   const updateName = name.charAt(0).toUpperCase() + name.slice(1);
 
   const setCategory = ({ target }: React.ChangeEvent<HTMLInputElement>) =>
-    dispatch(action({ [name]: target.checked }));
+    context?.dispatch(action({ [name]: target.checked }));
 
   return (
     <div>
@@ -21,7 +19,7 @@ const FilterCategory = ({
         type="checkbox"
         name={name}
         onChange={setCategory}
-        checked={stateFilters[nameState].includes(name)}
+        checked={context?.stateFilters[nameState].includes(name)}
       ></input>
       <label htmlFor={name} className="category-name">
         {updateName}

@@ -15,7 +15,7 @@ import {
   SELECTED_YEAR,
 } from './SlidersConst';
 
-const Sliders = () => {
+const Sliders = (): JSX.Element => {
   const dataForSlider: IDataForSlider = {
     [CATEGORY_COUNTS]: {
       action: chooseCounts,
