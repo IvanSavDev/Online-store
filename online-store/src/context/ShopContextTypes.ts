@@ -1,25 +1,24 @@
 import React from 'react';
+import { InitialStateFiltersType } from 'Src/types/initialStateFiltersType';
+import { Actions } from 'Src/reducer/reducerActionsTypes';
 
-import { InitialStateFiltersType } from '../type/initialStateFiltersType';
-import { Actions } from '../reducer/reducerActions';
-
-export type GoodsBasket = {
+export interface IGoodsBasket {
   length: number;
   [key: string]: string | number;
-};
+}
 
 export type ShopContextType = null | {
   stateFilters: InitialStateFiltersType;
   stateBasket: {
-    dataOfGoodsInBasket: GoodsBasket;
+    dataOfGoodsInBasket: IGoodsBasket;
     addGoodsInBasket: (name: string, action: string) => void;
   };
   dispatch: React.Dispatch<Actions>;
   stateSortCategory: string;
 };
 
-export type DataShop = {
-  stateFilters: InitialStateFiltersType;
-  stateBasket: GoodsBasket;
-  sortCategory: string;
-};
+export interface DataShop {
+  readonly stateFilters: InitialStateFiltersType;
+  readonly stateBasket: IGoodsBasket;
+  readonly sortCategory: string;
+}

@@ -13,91 +13,22 @@ import {
   VALUE_SEARCH,
 } from './reducerConst';
 
-interface IChooseCompany {
-  type: typeof SELECT_COMPANY;
-  payload: {
-    [key: string]: boolean;
-  };
-}
-interface IChooseCpu {
-  type: typeof SELECT_CPU;
-  payload: {
-    [key: string]: boolean;
-  };
-}
-interface IChooseRam {
-  type: typeof SELECT_RAM;
-  payload: {
-    [key: string]: boolean;
-  };
-}
-interface IChooseColors {
-  type: typeof SELECT_COLORS;
-  payload: {
-    [key: string]: boolean;
-  };
-}
-interface IChooseCounts {
-  type: typeof SELECT_COUNTS;
-  payload: [number, number];
-}
-interface IChooseSdd {
-  type: typeof SELECT_SSD;
-  payload: {
-    [key: string]: boolean;
-  };
-}
-
-interface IChoosePrice {
-  type: typeof SELECT_PRICE;
-  payload: [number, number];
-}
-
-interface IChooseYearRealease {
-  type: typeof SELECT_YEAR_REALEASE;
-  payload: [number, number];
-}
-
-interface IChooseFavorite {
-  type: typeof SELECT_FAVORITE;
-  payload: boolean;
-}
-
-interface IAddToBacket {
-  type: typeof ADD_TO_BASKET;
-  payload: number;
-}
-
-interface ISetValue {
-  type: typeof VALUE_SEARCH;
-  payload: string;
-}
-
-interface IResetState {
-  type: typeof RESET;
-}
-
-type DataCheckbox = {
-  [key: string]: boolean;
-};
-
-type DataRange = [number, number];
-
-type CountGoodsType = number;
-
-export type Actions =
-  | IChooseCompany
-  | IChooseCpu
-  | IChooseRam
-  | IChooseColors
-  | IChooseCounts
-  | IChooseSdd
-  | IChooseYearRealease
-  | IChoosePrice
-  | IChooseFavorite
-  | IResetState
-  | IAddToBacket
-  | ISetValue;
+import {
+  DataCheckbox,
+  DataRange,
+  IAddToBacket,
+  IChooseColors,
+  IChooseCompany,
+  IChooseCounts,
+  IChooseCpu,
+  IChooseFavorite,
+  IChoosePrice,
+  IChooseRam,
+  IChooseSdd,
+  IChooseYearRealease,
+  IResetState,
+  ISetValue,
+} from './reducerActionsTypes';
 
 export const chooseCompany = (dataCompany: DataCheckbox): IChooseCompany => ({
   type: SELECT_COMPANY,
@@ -140,7 +71,7 @@ export const chooseFavorite = (dataFavorite: boolean): IChooseFavorite => ({
 export const resetState = (): IResetState => ({
   type: RESET,
 });
-export const addToBacket = (countGoods: CountGoodsType): IAddToBacket => ({
+export const addToBacket = (countGoods: number): IAddToBacket => ({
   type: ADD_TO_BASKET,
   payload: countGoods,
 });
@@ -148,23 +79,3 @@ export const setValueSearch = (valueSearch: string): ISetValue => ({
   type: VALUE_SEARCH,
   payload: valueSearch,
 });
-
-// type ISelectAction = {
-//   [key: string]: (key: DataRange | DataCheckbox | boolean) => Actions,
-// }
-
-// const selectAction = (nameCategory: string) => {
-//   const actionsByName: ISelectAction = {
-//     company: (key: DataCheckbox) => chooseCompany(key),
-//     cpu: chooseCpu,
-//     ram: chooseRam,
-//     color: chooseColor,
-//     counts: chooseCounts,
-//     ssd: chooseSsd,
-//     year: chooseYearRealease,
-//     price: choosePrice,
-//     favorite: chooseFavorite,
-//   }
-
-//   return actionsByName[nameCategory];
-// }

@@ -39,6 +39,10 @@
   }
 }
 
+.category-header {
+  margin-bottom: 6px;
+}
+
 .category-search {
   grid-area: search;
 }
@@ -78,76 +82,69 @@
   grid-area: favorite;
 }
 
-
-
-.category-header {
-  margin-bottom: 6px;
-}
-
 .category-favorite {
   display: flex;
   align-items: center;
-}
 
-.category-favorite__header {
-  display: inline-block;
-  margin: 0;
-  margin-right: 10px;
-  font-size: 1.17em;
-  font-weight: bold;
+  &__header {
+    display: inline-block;
+    margin: 0;
+    margin-right: 10px;
+    font-size: 1.17em;
+    font-weight: bold;
+  }
 }
 
 .category-search {
   position: relative;
-}
 
-.category-search__text {
-  width: 100%;
-}
+  &__text {
+    width: 100%;
+  }
 
-.category-search__btn-reset {
-  position: absolute;
-  top: 50%;
-  width: 20px;
-  height: 20px;
-  padding: 0;
-  cursor: pointer;
-  border: none;
-  background: transparent;
-  transform: translate(-150%, -50%);
-}
+  &__btn-reset {
+    position: absolute;
+    top: 50%;
+    width: 20px;
+    height: 20px;
+    padding: 0;
+    border: none;
+    cursor: pointer;
+    background: transparent;
+    transform: translate(-150%, -50%);
+  }
 
+  &__btn-img {
+    width: 100%;
+    height: 100%;
+  }
 
-.category-search__btn-img {
-  width: 100%;
-  height: 100%;
-}
-
-.category-search__btn-img:active {
-  transform: scale(1.2);
+  &__btn-img:active {
+    transform: scale(1.2);
+  }
 }
 
 .btn-reset {
   width: 100px;
-  background-color: transparent;
   border: 1px solid black;
+  background-color: transparent;
   cursor: pointer;
-}
 
-.btn-reset:hover {
-  background-color: $bisque;
-}
+  &:hover {
+    background-color: $bisque;
+  }
 
-.btn-reset:active {
-  transform: scale(1.1);
-}
+  &:active {
+    transform: scale(1.1);
+  }
 
-.btn-reset-filters {
-  grid-area: btnResetFilters;
-}
+  &-filters {
+    grid-area: btnResetFilters;
+  }
 
-.btn-reset-options {
-  grid-area: btnResetOptions;
+  &-options {
+    grid-area: btnResetOptions;
+  }
 }
 
 @media (max-width: 500px) {
@@ -156,7 +153,6 @@
   }
 }
 
-@import './FilterCategory/FilterCategory';
+@import './MergeCategories/FilterCategory/FilterCategory';
 @import './FilterColor/FilterColor';
-@import './Slider/Slider';
-// @import './ButtonReset/ButtonReset';
+@import './Sliders/Slider/Slider';

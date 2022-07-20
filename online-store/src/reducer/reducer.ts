@@ -12,9 +12,9 @@ import {
   VALUE_SEARCH,
 } from './reducerConst';
 
-import { Actions } from './reducerActions';
-import { InitialStateFiltersType } from 'Src/type/initialStateFiltersType';
-import data from 'Src/data/data';
+import { Actions } from './reducerActionsTypes';
+import { InitialStateFiltersType } from 'Src/types/initialStateFiltersType';
+import { productData } from 'Src/data/productData';
 
 export const reducerShop = (
   state: InitialStateFiltersType,
@@ -22,8 +22,8 @@ export const reducerShop = (
 ): InitialStateFiltersType => {
   switch (action.type) {
     case SELECT_COMPANY: {
-      const [[name, value]] = Object.entries(action.payload);
-      if (value) {
+      const [[name, productSelected]] = Object.entries(action.payload);
+      if (productSelected) {
         const copyArray = state.selectedCompany;
         if (!state.selectedCompany.includes(name)) {
           copyArray.push(name);
@@ -43,8 +43,8 @@ export const reducerShop = (
     }
 
     case SELECT_CPU: {
-      const [[name, value]] = Object.entries(action.payload);
-      if (value) {
+      const [[name, productSelected]] = Object.entries(action.payload);
+      if (productSelected) {
         const copyArray = state.selectedCpu;
         if (!state.selectedCpu.includes(name)) {
           copyArray.push(name);
@@ -62,8 +62,8 @@ export const reducerShop = (
     }
 
     case SELECT_RAM: {
-      const [[name, value]] = Object.entries(action.payload);
-      if (value) {
+      const [[name, productSelected]] = Object.entries(action.payload);
+      if (productSelected) {
         const copyArray = state.selectedRam;
         if (!state.selectedRam.includes(name)) {
           copyArray.push(name);
@@ -81,8 +81,8 @@ export const reducerShop = (
     }
 
     case SELECT_SSD: {
-      const [[name, value]] = Object.entries(action.payload);
-      if (value) {
+      const [[name, productSelected]] = Object.entries(action.payload);
+      if (productSelected) {
         const copyArray = state.selectedSsd;
         if (!state.selectedSsd.includes(name)) {
           copyArray.push(name);
@@ -118,8 +118,8 @@ export const reducerShop = (
       };
 
     case SELECT_COLORS: {
-      const [[name, value]] = Object.entries(action.payload);
-      if (value) {
+      const [[name, productSelected]] = Object.entries(action.payload);
+      if (productSelected) {
         const copyArray = state.selectedColors;
         if (!state.selectedColors.includes(name)) {
           copyArray.push(name);
@@ -142,7 +142,7 @@ export const reducerShop = (
       return {
         ...state,
         selectedFavorite: action.payload
-          ? data
+          ? productData
               .filter((item) => item.favorite === action.payload)
               .map((item) => item.name)
           : [],
@@ -173,98 +173,3 @@ export const reducerShop = (
       return state;
   }
 };
-
-// export const reducerShop = (
-//   state: InitialStateFiltersType,
-//   action: Actions
-// ): InitialStateFiltersType => {
-//   switch (action.type) {
-//     case SELECT_COMPANY:
-//       const [[name, value]] = Object.entries(action.payload);
-//       if (value) {
-//         const copyArray = state.selectedCompany;
-//         if (!state.selectedCompany.includes(name)) {
-//           copyArray.push(name);
-//         }
-//         return {
-//           ...state,
-//           selectedCompany: copyArray,
-//         };
-//       } else {
-//         return {
-//           ...state,
-//           selectedCompany: state.selectedCompany.filter(
-//             (companyName) => companyName !== name
-//           ),
-//         };
-//       }
-
-//     case SELECT_CPU:
-//       return {
-//         ...state,
-//         selectedCpu: {
-//           ...state.selectedCpu,
-//           ...action.payload,
-//         },
-//       };
-
-//     case SELECT_RAM:
-//       return {
-//         ...state,
-//         selectedRam: {
-//           ...state.selectedRam,
-//           ...action.payload,
-//         },
-//       };
-
-//     case SELECT_SSD:
-//       return {
-//         ...state,
-//         selectedSsd: {
-//           ...state.selectedSsd,
-//           ...action.payload,
-//         },
-//       };
-
-//     case SELECT_COUNTS:
-//       return {
-//         ...state,
-//         selectedCounts: [...action.payload],
-//       };
-
-//     case SELECT_PRICE:
-//       return {
-//         ...state,
-//         selectedPrice: [...action.payload],
-//       };
-
-//     case SELECT_YEAR_REALEASE:
-//       return {
-//         ...state,
-//         selectedYearRealease: [...action.payload],
-//       };
-
-//     case SELECT_COLORS:
-//       return {
-//         ...state,
-//         selectedColors: {
-//           ...state.selectedColors,
-//           ...action.payload,
-//         },
-//       };
-
-//     case SELECT_FAVORITE:
-//       return {
-//         ...state,
-//         selectedFavorite: data
-//           .filter((item) => item.favorite === action.payload)
-//           .map((item) => item.name),
-//       };
-
-//     case RESET:
-//       return initialState;
-
-//     default:
-//       return state;
-//   }
-// };

@@ -1,4 +1,4 @@
-import { InitialStateFiltersType } from '../type/initialStateFiltersType';
+import { InitialStateFiltersType } from 'Src/types/initialStateFiltersType';
 
 export const initialStateFilters: InitialStateFiltersType = {
   selectedCompany: [],

@@ -1,9 +1,18 @@
 import React, { useContext } from 'react';
-import imgsPaths from '../../../data/imgsPaths';
-import { LaptopData } from '../../../data/typeData';
+import { imgsPaths, ImgData } from 'Src/data/imgsPaths';
+import { LaptopData } from 'Src/types/productDataType';
 import { ShopContext } from 'Src/context/ShopContext';
+import { ShopContextType } from 'Src/context/ShopContextTypes';
 
-const Card = (props: { dataItem: LaptopData }) => {
+const getCurrentPhoto = (
+  imgsPaths: Array<ImgData>,
+  id: number
+): string | undefined => {
+  const photo = imgsPaths.find((img) => img.id === id);
+  return photo?.img;
+};
+
+const Card = (props: { dataItem: LaptopData }): JSX.Element => {
   const {
     dataItem: {
       company,
@@ -21,9 +30,9 @@ const Card = (props: { dataItem: LaptopData }) => {
   } = props;
   const {
     stateBasket: { dataOfGoodsInBasket, addGoodsInBasket },
-  } = useContext(ShopContext)!;
+  } = useContext<ShopContextType>(ShopContext)!;
 
-  const addItem = () => {
+  const addProduct = () => {
     if (dataOfGoodsInBasket.length === 20 && !dataOfGoodsInBasket[name]) {
       alert('Извините, все слоты заполнены');
       return;
@@ -39,7 +48,11 @@ const Card = (props: { dataItem: LaptopData }) => {
     <div className="card">
       <h3 className="card__header">{name}</h3>
       <div className="card__img-container">
-        <img className="card__img" src={imgsPaths[id - 1].img} alt={name} />
+        <img
+          className="card__img"
+          src={getCurrentPhoto(imgsPaths, id)}
+          alt={name}
+        />
       </div>
       <ul className="card__list">
         <li className="card__item">Company: {company}</li>
@@ -53,7 +66,7 @@ const Card = (props: { dataItem: LaptopData }) => {
         <li className="card__item">Favorite: {favorite ? 'yes' : 'no'}</li>
       </ul>
       <div className="card__cart-control">
-        <button className="card__btn card__btn-add" onClick={addItem}>
+        <button className="card__btn card__btn-add" onClick={addProduct}>
           {dataOfGoodsInBasket[name] === 1
             ? 'Delete from basket'
             : 'Add to Basket'}
@@ -64,27 +77,3 @@ const Card = (props: { dataItem: LaptopData }) => {
 };
 
 export default Card;
-
-// const getPathImgCard = (name: string) =>
-//   `../../../../assets/computers/${name}.jpg`;
-// const getPathImgCard2 = async (name: string) => {
-//   const imgPath = await import(`../../../../assets/computers/${name}.jpg`);
-//   return imgPath;
-// };
-
-// useEffect(() => {
-//   const getImg = async (name: string) => {
-//     const img = await import(`../../../../assets/computers/${name}.jpg`);
-//     console.log(img);
-//     console.log(typeof img);
-//     setImg(img);
-//   };
-//   getImg(imgName);
-// }, [img]);
-// console.log(getPathImgCard(imgName));
-
-// const kek = require(`${getPathImgCard(imgName)}`);
-
-// const addToBasket = () => {
-
-// }

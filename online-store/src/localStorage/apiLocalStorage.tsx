@@ -1,4 +1,4 @@
-import { DataShop } from '../context/ShopContextTypes';
+import { DataShop } from 'Src/context/ShopContextTypes';
 
 export const getDataFromStorage = (): DataShop | null => {
   const dataFromStorage = localStorage.getItem('stateShop');

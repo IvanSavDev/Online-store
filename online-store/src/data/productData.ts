@@ -1,6 +1,6 @@
-import { LaptopData } from './typeData';
+import { LaptopData } from 'Src/types/productDataType';
 
-export const data: Array<LaptopData> = [
+export const productData: Array<LaptopData> = [
   {
     id: 1,
     company: 'hp',
@@ -275,5 +275,3 @@ export const data: Array<LaptopData> = [
     favorite: true,
   },
 ];
-
-export default data;

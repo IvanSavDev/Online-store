@@ -1,43 +1,14 @@
 import React, { createContext, useReducer, useState } from 'react';
-import { DataShop, GoodsBasket, ShopContextType } from './ShopContextTypes';
-import { reducerShop } from '../reducer/reducer';
+import { DataShop, IGoodsBasket, ShopContextType } from './ShopContextTypes';
+import { reducerShop } from 'Src/reducer/reducer';
 import { initialStateFilters } from 'Src/data/initialStateFilters';
 import { getDataFromStorage } from 'Src/localStorage/apiLocalStorage';
 
 export const ShopContext = createContext<ShopContextType>(null);
 
-export const Context = ({ children }: { children: React.ReactNode }) => {
-  let startData: DataShop = {
-    stateFilters: initialStateFilters,
-    stateBasket: { length: 0 },
-    sortCategory: 'name-decrease',
-  };
-  const [loadStorage, changeLoadStorage] = useState(false);
-  if (!loadStorage) {
-    changeLoadStorage(true);
-    const dataFromStorage = getDataFromStorage();
-    if (dataFromStorage) {
-      const copyData: DataShop = {
-        ...dataFromStorage,
-        stateFilters: {
-          ...dataFromStorage.stateFilters,
-          search: '',
-        },
-      };
-      startData = copyData;
-    }
-  }
-  const [stateShop] = useState(startData);
-  const [dataOfGoodsInBasket, addToBasket] = useState<GoodsBasket>(
-    stateShop.stateBasket
-  );
-
-  const [stateFilters, dispatch] = useReducer(
-    reducerShop,
-    stateShop.stateFilters
-  );
-
-  const addGoodsInBasket = (name: string, action: string): void => {
+const addGoodsInBasket =
+  (addToBasket: React.Dispatch<React.SetStateAction<IGoodsBasket>>) =>
+  (name: string, action: string): void => {
     const currentCount = action === 'add' ? 1 : -1;
     addToBasket((prevState) => {
       const copyState = { ...prevState };
@@ -57,6 +28,42 @@ export const Context = ({ children }: { children: React.ReactNode }) => {
     });
   };
 
+export const Context = ({
+  children,
+}: {
+  children: React.ReactNode;
+}): JSX.Element => {
+  let startData: DataShop = {
+    stateFilters: initialStateFilters,
+    stateBasket: { length: 0 },
+    sortCategory: 'name-decrease',
+  };
+
+  const [loadStorage, changeLoadStorage] = useState(false);
+
+  if (!loadStorage) {
+    changeLoadStorage(true);
+    const dataFromStorage = getDataFromStorage();
+    if (dataFromStorage) {
+      const copyData: DataShop = {
+        ...dataFromStorage,
+        stateFilters: {
+          ...dataFromStorage.stateFilters,
+          search: '',
+        },
+      };
+      startData = copyData;
+    }
+  }
+
+  const [dataOfGoodsInBasket, addToBasket] = useState<IGoodsBasket>(
+    startData.stateBasket
+  );
+  const [stateFilters, dispatch] = useReducer(
+    reducerShop,
+    startData.stateFilters
+  );
+
   return (
     <ShopContext.Provider
       value={{
@@ -64,12 +71,14 @@ export const Context = ({ children }: { children: React.ReactNode }) => {
         dispatch,
         stateBasket: {
           dataOfGoodsInBasket,
-          addGoodsInBasket,
+          addGoodsInBasket: addGoodsInBasket(addToBasket),
         },
-        stateSortCategory: stateShop.sortCategory,
+        stateSortCategory: startData.sortCategory,
       }}
     >
       {children}
     </ShopContext.Provider>
   );
 };
+
+export default Context;

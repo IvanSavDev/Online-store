@@ -12,9 +12,9 @@ $bisque: bisque;
 }
 
 body {
-  font-family: 'Edu VIC WA NT Beginner';
   height: 100vh;
   min-width: 324px;
+  font-family: 'Edu VIC WA NT Beginner';
 }
 
 #root {
@@ -29,13 +29,11 @@ body {
 
 .layout-width {
   max-width: 1300px;
+  height: 100%;
   padding: 0 20px;
   margin-left: auto;
   margin-right: auto;
-  height: 100%;
 }
-
-
 
 @import '../../layout/Header/Header';
 @import '../../layout/Main/Main.scss';

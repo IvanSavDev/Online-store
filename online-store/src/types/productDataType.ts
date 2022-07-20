@@ -10,5 +10,4 @@ export interface LaptopData {
   color: string;
   price: number;
   favorite: boolean;
-  [key: string]: string | number | boolean;
 }

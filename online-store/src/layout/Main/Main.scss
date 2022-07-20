@@ -7,9 +7,9 @@
 
 .main-container {
   display: flex;
+  gap: 20px;
   padding-top: 30px;
   padding-bottom: 30px;
-  gap: 20px;
 }
 
 @media (max-width: 768px) {

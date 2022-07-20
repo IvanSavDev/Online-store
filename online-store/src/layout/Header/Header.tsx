@@ -1,19 +1,20 @@
 import React, { useContext } from 'react';
 import { ShopContext } from 'Src/context/ShopContext';
-import imgStore from '../../assets/icons/store.png';
-import imgBacket from '../../assets/icons/wicker-basket.png';
+import { ShopContextType } from 'Src/context/ShopContextTypes';
+import imgStore from 'Src/assets/icons/store.png';
+import imgBacket from 'Src/assets/icons/wicker-basket.png';
 
-const Header = () => {
+const Header = (): JSX.Element => {
   const {
     stateBasket: { dataOfGoodsInBasket },
-  } = useContext(ShopContext)!;
+  } = useContext<ShopContextType>(ShopContext)!;
 
   return (
     <header className="header">
       <div className="layout-width header-container">
         <div className="logo">
-          <img className="logo_img" src={imgStore} alt="" />
-          <span className="logo_name">Online store</span>
+          <img src={imgStore} alt="online store" />
+          <span className="logo__name">Online store</span>
         </div>
         <div className="basket">
           <div className="backet__counts">{dataOfGoodsInBasket.length}</div>

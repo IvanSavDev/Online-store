@@ -14,13 +14,13 @@
   display: flex;
   align-items: center;
 
-  .img-github {
+  &__img {
     display: inline-block;
     height: 80%;
   }
 }
 
-.img-rs {
+.link-rs__img {
   display: block;
   height: 100%;
 }

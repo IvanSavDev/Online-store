@@ -1,10 +1,9 @@
-.cards__sort-container {
-  display: flex;
-  justify-content: center;
-  // padding: 0 40px;
-}
-
 .cards__sort {
-  margin-bottom: 30px;
   width: 150px;
+  margin-bottom: 30px;
+
+  &-container {
+    display: flex;
+    justify-content: center;
+  }
 }

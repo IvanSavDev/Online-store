@@ -1,31 +1,31 @@
-import img1 from '../assets/computers/hpPav14.png';
-import img2 from '../assets/computers/huaweyMate14.png';
-import img3 from '../assets/computers/huaweyMateD14.png';
-import img4 from '../assets/computers/lenovoIdepad.png';
-import img5 from '../assets/computers/honorMgX.png';
-import img6 from '../assets/computers/acerA715.png';
-import img7 from '../assets/computers/asusR522.png';
-import img8 from '../assets/computers/acerAspire3.png';
-import img9 from '../assets/computers/honorMgX15.png';
-import img10 from '../assets/computers/huaweyMate14s.png';
-import img11 from '../assets/computers/hpPav15.png';
-import img12 from '../assets/computers/msiGF76.png';
-import img13 from '../assets/computers/msiModern.png';
-import img14 from '../assets/computers/macbookAir.png';
-import img15 from '../assets/computers/macbookPro.png';
-import img16 from '../assets/computers/msiBravo.png';
-import img17 from '../assets/computers/huaweyMateE.png';
-import img18 from '../assets/computers/huaweyXPro.png';
-import img19 from '../assets/computers/honorMag15.png';
-import img20 from '../assets/computers/honorView.png';
-import img21 from '../assets/computers/honorMg16.png';
+import img1 from 'Src/assets/computers/hpPav14.png';
+import img2 from 'Src/assets/computers/huaweyMate14.png';
+import img3 from 'Src/assets/computers/huaweyMateD14.png';
+import img4 from 'Src/assets/computers/lenovoIdepad.png';
+import img5 from 'Src/assets/computers/honorMgX.png';
+import img6 from 'Src/assets/computers/acerA715.png';
+import img7 from 'Src/assets/computers/asusR522.png';
+import img8 from 'Src/assets/computers/acerAspire3.png';
+import img9 from 'Src/assets/computers/honorMgX15.png';
+import img10 from 'Src/assets/computers/huaweyMate14s.png';
+import img11 from 'Src/assets/computers/hpPav15.png';
+import img12 from 'Src/assets/computers/msiGF76.png';
+import img13 from 'Src/assets/computers/msiModern.png';
+import img14 from 'Src/assets/computers/macbookAir.png';
+import img15 from 'Src/assets/computers/macbookPro.png';
+import img16 from 'Src/assets/computers/msiBravo.png';
+import img17 from 'Src/assets/computers/huaweyMateE.png';
+import img18 from 'Src/assets/computers/huaweyXPro.png';
+import img19 from 'Src/assets/computers/honorMag15.png';
+import img20 from 'Src/assets/computers/honorView.png';
+import img21 from 'Src/assets/computers/honorMg16.png';
 
-interface ImgData {
+export interface ImgData {
   id: number;
   img: string;
 }
 
-const imgsPaths: Array<ImgData> = [
+export const imgsPaths: Array<ImgData> = [
   {
     id: 1,
     img: img1,
@@ -111,5 +111,3 @@ const imgsPaths: Array<ImgData> = [
     img: img21,
   },
 ];
-
-export default imgsPaths;

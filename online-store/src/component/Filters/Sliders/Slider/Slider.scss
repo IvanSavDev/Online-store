@@ -3,9 +3,9 @@
 }
 
 .noUi-horizontal .noUi-handle {
+  right: -14px;
   height: 18px;
   width: 28px;
-  right: -14px;
 }
 
 .noUi-connect {
@@ -14,9 +14,9 @@
 
 .noUi-handle:before,
 .noUi-handle:after {
-  height: 7px;
   left: 12px;
-  top: 5px
+  top: 5px;
+  height: 7px;
 }
 
 .noUi-handle:after {

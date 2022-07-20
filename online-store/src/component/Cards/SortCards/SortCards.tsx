@@ -1,12 +1,12 @@
 import React from 'react';
 import { SortCardsProps } from './SortCardType';
 
-const SortCards = ({ dataForSort }: SortCardsProps) => {
+const SortCards = ({ dataForSort }: SortCardsProps): JSX.Element => {
   const {
     category: { sortCategory, setSortCategory },
   } = dataForSort;
 
-  const changeCategory = (event: React.SyntheticEvent) => {
+  const changeCategory = (event: React.SyntheticEvent): void => {
     const currentOptionEl = event.target as HTMLOptionElement;
     setSortCategory(currentOptionEl.value);
   };

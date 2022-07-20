@@ -1,5 +1,5 @@
 import { LaptopData } from 'Src/types/productDataType';
 
-export type CardsProps = {
+export type FilterProps = {
   dataItems: Array<LaptopData>;
 };
