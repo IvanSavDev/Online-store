@@ -6,6 +6,7 @@
         "src/*"
       ],
     },
+    "target": "es6",
     "esModuleInterop": true,
     "skipLibCheck": true,
     "strict": true, 
@@ -14,6 +15,7 @@
     "moduleResolution": "node",
     "jsx": "react", 
     "noImplicitAny": true,
-    "allowSyntheticDefaultImports": true, 
+    "allowSyntheticDefaultImports": true,
+    "noUnusedLocals": true,
   }
 }
