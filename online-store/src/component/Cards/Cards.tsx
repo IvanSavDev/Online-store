@@ -5,7 +5,6 @@ import { ShopContext } from 'Src/context/ShopContext';
 import { setDataFromStorage } from 'Src/localStorage/apiLocalStorage';
 import { CardsProps } from './CardsTypes';
 import { getFilteredCards } from './getFilteredCards';
-// import { getSortedCards } from './getSortedCards';
 import { ShopContextType } from 'Src/context/ShopContextTypes';
 import { LaptopDataCategories } from 'Src/types/productDataType';
 import { makeLaptopComparator } from './getSortedCards';
