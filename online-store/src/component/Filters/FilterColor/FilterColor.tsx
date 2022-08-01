@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { ShopContext } from 'Src/context/ShopContext';
 import { ShopContextType } from 'Src/context/ShopContextTypes';
 import { chooseColor } from 'Src/reducer/reducerActions';
+import { Colors } from './FilterColorsEnum';
 
 const FilterColor = (): JSX.Element => {
   const { stateFilters, dispatch } = useContext<ShopContextType>(ShopContext)!;
@@ -11,13 +12,11 @@ const FilterColor = (): JSX.Element => {
     dispatch(chooseColor({ [input.name]: input.checked }));
   };
 
-  const colors = ['grey', 'blue', 'black', 'green'];
-
   return (
     <div className="category-colors">
       <h3 className="filters__header category-colors__header">Color:</h3>
       <div className="colors__list">
-        {colors.map((color) => {
+        {Object.values(Colors).map((color) => {
           return (
             <input
               key={color}
