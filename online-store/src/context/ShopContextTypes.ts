@@ -1,6 +1,7 @@
 import React from 'react';
 import { InitialStateFiltersType } from 'Src/types/initialStateFiltersType';
 import { Actions } from 'Src/reducer/reducerActionsTypes';
+import { LaptopDataCategories } from 'Src/types/productDataType';
 
 export interface IGoodsBasket {
   length: number;
@@ -14,11 +15,11 @@ export type ShopContextType = null | {
     addGoodsInBasket: (name: string, action: string) => void;
   };
   dispatch: React.Dispatch<Actions>;
-  stateSortCategory: string;
+  stateSortCategory: LaptopDataCategories;
 };
 
 export interface DataShop {
   readonly stateFilters: InitialStateFiltersType;
   readonly stateBasket: IGoodsBasket;
-  readonly sortCategory: string;
+  readonly sortCategory: LaptopDataCategories;
 }

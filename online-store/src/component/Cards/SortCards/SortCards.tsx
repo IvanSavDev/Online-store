@@ -1,14 +1,28 @@
 import React from 'react';
+import { LaptopCategories } from 'Src/types/productDataType';
 import { SortCardsProps } from './SortCardType';
+import { TypesSort } from 'Src/Enums/SortCardEnum';
 
 const SortCards = ({ dataForSort }: SortCardsProps): JSX.Element => {
   const {
     category: { sortCategory, setSortCategory },
   } = dataForSort;
 
+  const sortName = sortCategory.name;
+  const sortType = sortCategory.ascending
+    ? TypesSort.Ascending
+    : TypesSort.Decending;
+
   const changeCategory = (event: React.SyntheticEvent): void => {
     const currentOptionEl = event.target as HTMLOptionElement;
-    setSortCategory(currentOptionEl.value);
+    const [nameSelectedSort, typeSelectedSort] = currentOptionEl.value.split(
+      '-'
+    ) as [LaptopCategories, string];
+    const isAscending = typeSelectedSort === TypesSort.Ascending;
+    setSortCategory({
+      name: nameSelectedSort,
+      [TypesSort.Ascending]: isAscending,
+    });
   };
 
   return (
@@ -17,12 +31,20 @@ const SortCards = ({ dataForSort }: SortCardsProps): JSX.Element => {
         name="sort"
         className="cards__sort"
         onChange={changeCategory}
-        value={sortCategory}
+        value={`${sortName}-${sortType}`}
       >
-        <option value="name-decrease">Name decending</option>
-        <option value="name-increase">Name ascending</option>
-        <option value="year-decrease">Year decending</option>
-        <option value="year-increase">Year ascending</option>
+        <option value={`name-${TypesSort.Ascending}`}>
+          Name {TypesSort.Ascending}
+        </option>
+        <option value={`name-${TypesSort.Decending}`}>
+          Name {TypesSort.Decending}
+        </option>
+        <option value={`year-${TypesSort.Ascending}`}>
+          Year {TypesSort.Ascending}
+        </option>
+        <option value={`year-${TypesSort.Decending}`}>
+          Year {TypesSort.Decending}
+        </option>
       </select>
     </div>
   );

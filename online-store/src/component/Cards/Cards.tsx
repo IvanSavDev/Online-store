@@ -5,14 +5,22 @@ import { ShopContext } from 'Src/context/ShopContext';
 import { setDataFromStorage } from 'Src/localStorage/apiLocalStorage';
 import { CardsProps } from './CardsTypes';
 import { getFilteredCards } from './getFilteredCards';
-import { getSortedCards } from './getSortedCards';
+// import { getSortedCards } from './getSortedCards';
 import { ShopContextType } from 'Src/context/ShopContextTypes';
+import { LaptopDataCategories } from 'Src/types/productDataType';
+import { makeLaptopComparator } from './getSortedCards';
 
 const Cards = ({ dataItems }: CardsProps): JSX.Element => {
   const { stateFilters, stateBasket, stateSortCategory } =
     useContext<ShopContextType>(ShopContext)!;
 
-  const [sortCategory, setSortCategory] = useState<string>(stateSortCategory);
+  const [sortCategory, setSortCategory] =
+    useState<LaptopDataCategories>(stateSortCategory);
+
+  const currentSort = makeLaptopComparator(
+    sortCategory.name,
+    sortCategory.ascending
+  );
 
   useEffect(() => {
     const generalState = {
@@ -25,7 +33,7 @@ const Cards = ({ dataItems }: CardsProps): JSX.Element => {
 
   const filteredAndSortedCards = dataItems
     .filter((dataItem) => getFilteredCards(dataItem, stateFilters))
-    .sort(getSortedCards(sortCategory))
+    .sort(currentSort)
     .map((item) => <Card key={item.id} dataItem={item}></Card>);
 
   return (

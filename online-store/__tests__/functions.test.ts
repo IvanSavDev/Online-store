@@ -5,7 +5,7 @@ import {
   addToBacket,
 } from '../src/reducer/reducerActions';
 import { getFilteredCards } from 'Src/component/Cards/getFilteredCards';
-import { getSortedCards } from 'Src/component/Cards/getSortedCards';
+import { makeLaptopComparator } from 'Src/component/Cards/getSortedCards';
 import { productData } from 'Src/data/productData';
 import { getUniqNames } from 'Src/component/Filters/MergeCategories/getUniqNames';
 import { reducerShop } from '../src/reducer/reducer';
@@ -49,7 +49,7 @@ test('sort cards', () => {
   const firstElement = productData[0];
   const secondElement = productData[1];
 
-  const result = getSortedCards('name-decrease');
+  const result = makeLaptopComparator('name', true);
 
   expect(result(firstElement, secondElement)).toBe(-1);
 });

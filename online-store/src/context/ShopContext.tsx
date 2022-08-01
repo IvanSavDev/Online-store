@@ -3,6 +3,7 @@ import { DataShop, IGoodsBasket, ShopContextType } from './ShopContextTypes';
 import { reducerShop } from 'Src/reducer/reducer';
 import { initialStateFilters } from 'Src/data/initialStateFilters';
 import { getDataFromStorage } from 'Src/localStorage/apiLocalStorage';
+import { TypesSort } from 'Src/Enums/SortCardEnum';
 
 export const ShopContext = createContext<ShopContextType>(null);
 
@@ -36,7 +37,10 @@ export const Context = ({
   let startData: DataShop = {
     stateFilters: initialStateFilters,
     stateBasket: { length: 0 },
-    sortCategory: 'name-decrease',
+    sortCategory: {
+      name: 'name',
+      [TypesSort.Ascending]: true,
+    },
   };
 
   const [loadStorage, changeLoadStorage] = useState(false);
