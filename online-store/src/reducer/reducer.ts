@@ -14,7 +14,6 @@ import {
 
 import { Actions } from './reducerActionsTypes';
 import { InitialStateFiltersType } from 'Src/types/initialStateFiltersType';
-import { productData } from 'Src/data/productData';
 
 export const reducerShop = (
   state: InitialStateFiltersType,
@@ -141,11 +140,7 @@ export const reducerShop = (
     case SELECT_FAVORITE:
       return {
         ...state,
-        selectedFavorite: action.payload
-          ? productData
-              .filter((item) => item.favorite === action.payload)
-              .map((item) => item.name)
-          : [],
+        selectedFavorite: action.payload,
       };
 
     case VALUE_SEARCH: {
@@ -165,7 +160,7 @@ export const reducerShop = (
         selectedPrice: [0, 120000],
         selectedYearRealease: [2014, 2022],
         selectedColors: [],
-        selectedFavorite: [],
+        selectedFavorite: false,
         search: '',
       };
 

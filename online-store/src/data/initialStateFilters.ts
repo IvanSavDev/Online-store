@@ -9,6 +9,6 @@ export const initialStateFilters: InitialStateFiltersType = {
   selectedPrice: [0, 120000],
   selectedYearRealease: [2014, 2022],
   selectedColors: [],
-  selectedFavorite: [],
+  selectedFavorite: false,
   search: '',
 };

@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { imgsPaths, ImgData } from 'Src/data/imgsPaths';
-import { LaptopData } from 'Src/types/productDataType';
+import { ILaptopData } from 'Src/types/productDataType';
 import { ShopContext } from 'Src/context/ShopContext';
 import { ShopContextType } from 'Src/context/ShopContextTypes';
 
@@ -12,7 +12,7 @@ const getCurrentPhoto = (
   return photo?.img;
 };
 
-const Card = (props: { dataItem: LaptopData }): JSX.Element => {
+const Card = (props: { dataItem: ILaptopData }): JSX.Element => {
   const {
     dataItem: {
       company,

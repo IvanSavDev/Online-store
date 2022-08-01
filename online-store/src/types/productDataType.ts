@@ -1,6 +1,6 @@
 import { TypesSort } from 'Src/Enums/SortCardEnum';
 
-export interface LaptopData {
+export interface ILaptopData {
   id: number;
   company: string;
   name: string;

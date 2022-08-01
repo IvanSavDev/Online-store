@@ -1,5 +1,5 @@
-import { LaptopData } from 'Src/types/productDataType';
+import { ILaptopData } from 'Src/types/productDataType';
 
 export type CardsProps = {
-  dataItems: Array<LaptopData>;
+  dataItems: Array<ILaptopData>;
 };

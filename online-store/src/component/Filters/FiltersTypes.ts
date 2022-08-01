@@ -1,5 +1,5 @@
-import { LaptopData } from 'Src/types/productDataType';
+import { ILaptopData } from 'Src/types/productDataType';
 
 export type FilterProps = {
-  dataItems: Array<LaptopData>;
+  dataItems: Array<ILaptopData>;
 };

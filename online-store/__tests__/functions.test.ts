@@ -27,7 +27,7 @@ test('filter cards', () => {
     selectedPrice: [0, 120000],
     selectedYearRealease: [2014, 2022],
     selectedColors: [],
-    selectedFavorite: [],
+    selectedFavorite: false,
     search: '',
   };
 
@@ -84,7 +84,7 @@ test('reset filters', () => {
     selectedPrice: [0, 120000],
     selectedYearRealease: [2014, 2022],
     selectedColors: [],
-    selectedFavorite: [],
+    selectedFavorite: false,
     search: '',
   };
 
@@ -97,7 +97,7 @@ test('reset filters', () => {
     selectedPrice: [0, 120000],
     selectedYearRealease: [2014, 2022],
     selectedColors: [],
-    selectedFavorite: [],
+    selectedFavorite: false,
     search: '',
   };
 

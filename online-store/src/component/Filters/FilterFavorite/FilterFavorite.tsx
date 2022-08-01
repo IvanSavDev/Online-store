@@ -4,7 +4,7 @@ import { ShopContext } from 'Src/context/ShopContext';
 import { ShopContextType } from 'Src/context/ShopContextTypes';
 
 const FilterFavorite = (): JSX.Element => {
-  const { dispatch } = useContext<ShopContextType>(ShopContext)!;
+  const { dispatch, stateFilters } = useContext<ShopContextType>(ShopContext)!;
 
   return (
     <div className="category-favorite">
@@ -17,6 +17,7 @@ const FilterFavorite = (): JSX.Element => {
       <input
         id="favorite"
         type="checkbox"
+        checked={stateFilters.selectedFavorite}
         onChange={({ target }: React.ChangeEvent<HTMLInputElement>) => {
           dispatch(chooseFavorite(target.checked));
         }}

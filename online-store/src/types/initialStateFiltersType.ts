@@ -3,10 +3,10 @@ export interface InitialStateFiltersType {
   selectedCpu: Array<string>;
   selectedRam: Array<string>;
   selectedSsd: Array<string>;
-  selectedCounts: [number, number] | [];
-  selectedPrice: [number, number] | [];
-  selectedYearRealease: [number, number] | [];
+  selectedCounts: [number, number];
+  selectedPrice: [number, number];
+  selectedYearRealease: [number, number];
   selectedColors: Array<string>;
-  selectedFavorite: Array<string>;
+  selectedFavorite: boolean;
   search: string;
 }

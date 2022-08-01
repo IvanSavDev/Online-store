@@ -1,8 +1,8 @@
-import { LaptopData } from 'Src/types/productDataType';
+import { ILaptopData } from 'Src/types/productDataType';
 import { MergeCategoryType } from './MergeCategoriesTypes';
 
 export const getUniqNames = (
-  data: Array<LaptopData>,
+  data: Array<ILaptopData>,
   parameter: MergeCategoryType
 ): Array<string> => {
   const sortedUniqNames = data
