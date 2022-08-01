@@ -35,7 +35,7 @@ export const getFilteredCards = (
   if (!selectedColors.includes(color) && selectedColors.length !== 0) {
     return false;
   }
-  if (selectedFavorite.length !== 0 && !selectedFavorite.includes(name)) {
+  if (!selectedFavorite.includes(name) && selectedFavorite.length !== 0) {
     return false;
   }
   if (search && !name.toLowerCase().includes(search.toLowerCase())) {
