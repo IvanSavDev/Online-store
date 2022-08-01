@@ -30,12 +30,12 @@ const MergeCategories = ({ dataItems }: FilterProps): JSX.Element => {
       stateName: 'selectedCpu',
     },
     [CATEGORY_RAM]: {
-      headerName: 'RAM',
+      headerName: 'RAM(gb)',
       action: chooseRam,
       stateName: 'selectedRam',
     },
     [CATEGORY_SSD]: {
-      headerName: 'SSD',
+      headerName: 'SSD(gb)',
       action: chooseSsd,
       stateName: 'selectedSsd',
     },
