@@ -15,6 +15,9 @@ const Slider = ({
 }: SliderProps): JSX.Element => {
   const ref = useRef<HTMLInputElement>(null!);
   const { stateFilters, dispatch } = useContext<ShopContextType>(ShopContext)!;
+  console.log(nameState);
+  console.log(stateFilters);
+  console.log(stateFilters[nameState]);
   const [currentMin, currentMax] = stateFilters[nameState];
 
   useEffect(() => {

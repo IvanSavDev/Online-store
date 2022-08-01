@@ -14,7 +14,7 @@ export const getFilteredCards = (
     selectedSsd,
     selectedCounts: [minCount, maxCount],
     selectedPrice: [minPrice, maxPrice],
-    selectedYearRealease: [minYear, maxYear],
+    selectedYearRelease: [minYear, maxYear],
     selectedColors,
     selectedFavorite,
     search,

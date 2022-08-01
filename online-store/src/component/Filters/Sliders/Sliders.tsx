@@ -3,7 +3,7 @@ import Slider from './Slider/Slider';
 import {
   chooseCounts,
   choosePrice,
-  chooseYearRealease,
+  chooseYearRelease,
 } from 'Src/reducer/reducerActions';
 import { IDataForSlider, NamesCategoriesSliders } from './SlidersTypes';
 import {
@@ -32,7 +32,7 @@ const Sliders = (): JSX.Element => {
       headerName: 'Price',
     },
     [CATEGORY_YEAR]: {
-      action: chooseYearRealease,
+      action: chooseYearRelease,
       nameState: SELECTED_YEAR,
       step: 1,
       range: { min: 2014, max: 2022 },

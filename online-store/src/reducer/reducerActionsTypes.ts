@@ -5,7 +5,7 @@ import {
   SELECT_COLORS,
   SELECT_COUNTS,
   SELECT_SSD,
-  SELECT_YEAR_REALEASE,
+  SELECT_YEAR_RELEASE,
   SELECT_PRICE,
   SELECT_FAVORITE,
   RESET,
@@ -49,8 +49,8 @@ export interface IChoosePrice {
   payload: DataRange;
 }
 
-export interface IChooseYearRealease {
-  type: typeof SELECT_YEAR_REALEASE;
+export interface IChooseYearRelease {
+  type: typeof SELECT_YEAR_RELEASE;
   payload: DataRange;
 }
 
@@ -80,7 +80,7 @@ export type Actions =
   | IChooseColors
   | IChooseCounts
   | IChooseSdd
-  | IChooseYearRealease
+  | IChooseYearRelease
   | IChoosePrice
   | IChooseFavorite
   | IResetState

@@ -5,7 +5,7 @@ import {
   SELECT_COLORS,
   SELECT_COUNTS,
   SELECT_SSD,
-  SELECT_YEAR_REALEASE,
+  SELECT_YEAR_RELEASE,
   SELECT_PRICE,
   SELECT_FAVORITE,
   RESET,
@@ -110,10 +110,10 @@ export const reducerShop = (
         selectedPrice: [...action.payload],
       };
 
-    case SELECT_YEAR_REALEASE:
+    case SELECT_YEAR_RELEASE:
       return {
         ...state,
-        selectedYearRealease: [...action.payload],
+        selectedYearRelease: [...action.payload],
       };
 
     case SELECT_COLORS: {
@@ -158,7 +158,7 @@ export const reducerShop = (
         selectedSsd: [],
         selectedCounts: [0, 10],
         selectedPrice: [0, 120000],
-        selectedYearRealease: [2014, 2022],
+        selectedYearRelease: [2014, 2022],
         selectedColors: [],
         selectedFavorite: false,
         search: '',

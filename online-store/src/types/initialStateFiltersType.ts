@@ -5,7 +5,7 @@ export interface InitialStateFiltersType {
   selectedSsd: Array<string>;
   selectedCounts: [number, number];
   selectedPrice: [number, number];
-  selectedYearRealease: [number, number];
+  selectedYearRelease: [number, number];
   selectedColors: Array<string>;
   selectedFavorite: boolean;
   search: string;

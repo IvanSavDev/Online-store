@@ -5,7 +5,7 @@ import {
   SELECT_COLORS,
   SELECT_COUNTS,
   SELECT_SSD,
-  SELECT_YEAR_REALEASE,
+  SELECT_YEAR_RELEASE,
   SELECT_PRICE,
   SELECT_FAVORITE,
   RESET,
@@ -25,7 +25,7 @@ import {
   IChoosePrice,
   IChooseRam,
   IChooseSdd,
-  IChooseYearRealease,
+  IChooseYearRelease,
   IResetState,
   ISetValue,
 } from './reducerActionsTypes';
@@ -54,11 +54,11 @@ export const chooseSsd = (dataSsd: DataCheckbox): IChooseSdd => ({
   type: SELECT_SSD,
   payload: dataSsd,
 });
-export const chooseYearRealease = (
-  dataYearRealease: DataRange
-): IChooseYearRealease => ({
-  type: SELECT_YEAR_REALEASE,
-  payload: dataYearRealease,
+export const chooseYearRelease = (
+  dataYearRelease: DataRange
+): IChooseYearRelease => ({
+  type: SELECT_YEAR_RELEASE,
+  payload: dataYearRelease,
 });
 export const choosePrice = (dataPrice: DataRange): IChoosePrice => ({
   type: SELECT_PRICE,

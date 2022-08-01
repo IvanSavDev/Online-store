@@ -7,7 +7,7 @@ export const initialStateFilters: InitialStateFiltersType = {
   selectedSsd: [],
   selectedCounts: [0, 10],
   selectedPrice: [0, 120000],
-  selectedYearRealease: [2014, 2022],
+  selectedYearRelease: [2014, 2022],
   selectedColors: [],
   selectedFavorite: false,
   search: '',
