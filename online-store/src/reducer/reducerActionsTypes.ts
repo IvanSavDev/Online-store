@@ -80,8 +80,9 @@ export type Actions =
   | IResetState
   | ISetValue;
 
-export type ActionsCategories =
+export type ActionsCheckbox =
   | IChooseCompany
   | IChooseCpu
   | IChooseRam
+  | IChooseColors
   | IChooseSdd;

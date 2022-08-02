@@ -1,7 +1,4 @@
-import {
-  ActionsCategories,
-  DataCheckbox,
-} from 'Src/reducer/reducerActionsTypes';
+import { ActionsCheckbox, DataCheckbox } from 'Src/reducer/reducerActionsTypes';
 import {
   CATEGORY_COMPANY,
   CATEGORY_CPU,
@@ -25,7 +22,7 @@ export type MergeCategoryType =
   | typeof CATEGORY_RAM
   | typeof CATEGORY_SSD;
 
-export type ActionCategoryType = (dataItem: DataCheckbox) => ActionsCategories;
+export type ActionCategoryType = (dataItem: DataCheckbox) => ActionsCheckbox;
 
 interface dataCategoryType {
   headerName: string;
