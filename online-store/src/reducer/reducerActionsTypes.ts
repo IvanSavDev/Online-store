@@ -9,7 +9,6 @@ import {
   SELECT_PRICE,
   SELECT_FAVORITE,
   RESET,
-  ADD_TO_BASKET,
   VALUE_SEARCH,
 } from './reducerConst';
 
@@ -59,11 +58,6 @@ export interface IChooseFavorite {
   payload: boolean;
 }
 
-export interface IAddToBacket {
-  type: typeof ADD_TO_BASKET;
-  payload: number;
-}
-
 export interface ISetValue {
   type: typeof VALUE_SEARCH;
   payload: string;
@@ -84,7 +78,6 @@ export type Actions =
   | IChoosePrice
   | IChooseFavorite
   | IResetState
-  | IAddToBacket
   | ISetValue;
 
 export type ActionsCategories =

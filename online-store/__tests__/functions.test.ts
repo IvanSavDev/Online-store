@@ -2,7 +2,7 @@ import {
   chooseCompany,
   choosePrice,
   chooseRam,
-  addToBacket,
+  chooseFavorite,
 } from '../src/reducer/reducerActions';
 import { getFilteredCards } from 'Src/component/Cards/getFilteredCards';
 import { makeLaptopComparator } from 'Src/component/Cards/getSortedCards';
@@ -11,9 +11,9 @@ import { getUniqNames } from 'Src/component/Filters/MergeCategories/getUniqNames
 import { reducerShop } from '../src/reducer/reducer';
 import {
   SELECT_PRICE,
-  ADD_TO_BASKET,
   SELECT_RAM,
   SELECT_COMPANY,
+  SELECT_FAVORITE,
 } from 'Src/reducer/reducerConst';
 import { InitialStateFiltersType } from 'Src/types/initialStateFiltersType';
 
@@ -54,12 +54,12 @@ test('sort cards', () => {
   expect(result(firstElement, secondElement)).toBe(-1);
 });
 
-test('choose price', () => {
-  expect(addToBacket(5)).toStrictEqual({
-    type: ADD_TO_BASKET,
-    payload: 5,
-  });
-});
+// test('choose price', () => {
+//   expect(addToBasket(5)).toStrictEqual({
+//     type: ADD_TO_BASKET,
+//     payload: 5,
+//   });
+// });
 
 test('get uniq name', () => {
   const result = getUniqNames(productData, 'ram');
@@ -108,5 +108,12 @@ test('choose price', () => {
   expect(choosePrice([20000, 40000])).toStrictEqual({
     type: SELECT_PRICE,
     payload: [20000, 40000],
+  });
+});
+
+test('choose favorite', () => {
+  expect(chooseFavorite(true)).toStrictEqual({
+    type: SELECT_FAVORITE,
+    payload: true,
   });
 });

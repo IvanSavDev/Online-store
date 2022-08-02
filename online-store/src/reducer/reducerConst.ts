@@ -8,5 +8,4 @@ export const SELECT_YEAR_RELEASE = 'SELECT_YEAR_RELEASE';
 export const SELECT_COLORS = 'SELECT_COLORS';
 export const SELECT_FAVORITE = 'SELECT_FAVORITE';
 export const RESET = 'RESET';
-export const ADD_TO_BASKET = 'ADD_TO_BASKET';
 export const VALUE_SEARCH = 'VALUE_SEARCH';

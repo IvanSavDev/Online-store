@@ -9,14 +9,12 @@ import {
   SELECT_PRICE,
   SELECT_FAVORITE,
   RESET,
-  ADD_TO_BASKET,
   VALUE_SEARCH,
 } from './reducerConst';
 
 import {
   DataCheckbox,
   DataRange,
-  IAddToBacket,
   IChooseColors,
   IChooseCompany,
   IChooseCounts,
@@ -70,10 +68,6 @@ export const chooseFavorite = (dataFavorite: boolean): IChooseFavorite => ({
 });
 export const resetState = (): IResetState => ({
   type: RESET,
-});
-export const addToBacket = (countGoods: number): IAddToBacket => ({
-  type: ADD_TO_BASKET,
-  payload: countGoods,
 });
 export const setValueSearch = (valueSearch: string): ISetValue => ({
   type: VALUE_SEARCH,

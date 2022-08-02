@@ -199,7 +199,7 @@ Array [
     <h3
       className="filters__header category-header"
     >
-      RAM
+      RAM(gb)
       :
     </h3>
     <div>
@@ -237,7 +237,7 @@ Array [
     <h3
       className="filters__header category-header"
     >
-      SSD
+      SSD(gb)
       :
     </h3>
     <div>
