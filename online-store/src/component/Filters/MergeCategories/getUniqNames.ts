@@ -5,6 +5,20 @@ export const getUniqNames = (
   data: Array<ILaptopData>,
   parameter: MergeCategoryType
 ): Array<string> => {
+  const sortNumbers = (firstElement: number, secondElement: number) =>
+    firstElement - secondElement;
+  const sortStrings = (firstElement: string, secondElement: string) => {
+    const firstElementLowerCase = firstElement.toLowerCase();
+    const secondElementLoweCase = secondElement.toLowerCase();
+    if (firstElementLowerCase > secondElementLoweCase) {
+      return 1;
+    }
+    if (firstElementLowerCase < secondElementLoweCase) {
+      return -1;
+    }
+    return 0;
+  };
+
   const sortedUniqNames = data
     .map((item) => item[parameter])
     .sort((firstElement, secondElement) => {
@@ -12,20 +26,13 @@ export const getUniqNames = (
         typeof firstElement === 'number' &&
         typeof secondElement === 'number'
       ) {
-        return firstElement - secondElement;
+        return sortNumbers(firstElement, secondElement);
       }
       if (
         typeof firstElement === 'string' &&
         typeof secondElement === 'string'
       ) {
-        const firstElementLowerCase = firstElement.toLowerCase();
-        const secondElementLoweCase = secondElement.toLowerCase();
-        if (firstElementLowerCase > secondElementLoweCase) {
-          return 1;
-        }
-        if (firstElementLowerCase < secondElementLoweCase) {
-          return -1;
-        }
+        return sortStrings(firstElement, secondElement);
       }
       return 0;
     })
