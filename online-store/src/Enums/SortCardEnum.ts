@@ -1,4 +1,4 @@
 export enum TypesSort {
   Ascending = 'ascending',
-  Decending = 'decending',
+  Descending = 'descending',
 }

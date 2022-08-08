@@ -11,7 +11,7 @@ const SortCards = ({ dataForSort }: SortCardsProps): JSX.Element => {
   const sortName = sortCategory.name;
   const sortType = sortCategory.ascending
     ? TypesSort.Ascending
-    : TypesSort.Decending;
+    : TypesSort.Descending;
 
   const changeCategory = (event: React.SyntheticEvent): void => {
     const currentOptionEl = event.target as HTMLOptionElement;
@@ -36,14 +36,14 @@ const SortCards = ({ dataForSort }: SortCardsProps): JSX.Element => {
         <option value={`name-${TypesSort.Ascending}`}>
           Name {TypesSort.Ascending}
         </option>
-        <option value={`name-${TypesSort.Decending}`}>
-          Name {TypesSort.Decending}
+        <option value={`name-${TypesSort.Descending}`}>
+          Name {TypesSort.Descending}
         </option>
         <option value={`year-${TypesSort.Ascending}`}>
           Year {TypesSort.Ascending}
         </option>
-        <option value={`year-${TypesSort.Decending}`}>
-          Year {TypesSort.Decending}
+        <option value={`year-${TypesSort.Descending}`}>
+          Year {TypesSort.Descending}
         </option>
       </select>
     </div>
