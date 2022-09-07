@@ -2,7 +2,7 @@
 
 ## Description
 
-This is a one-page online store that allows you to perform various filtering, as well as adding products to the cart and saving them to localStorage.
+This is a online store that allows you to perform various filtering, as well as adding products to the cart and saving them to localStorage.
 
 ## Installation
 
