@@ -10,7 +10,7 @@
 
 ## Технологический стек
 - Построение приложения - **[React](https://reactjs.org/)**
-- Верстка страницы - **[SCSS](https://sass-scss.ru/)**
+- Стилизация страницы - **[SCSS](https://sass-scss.ru/)**
 - Тестирование - **[Jest](https://jestjs.io/ru/)**
 
 ## Установка
