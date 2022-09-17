@@ -1,6 +1,3 @@
-@import './Card/Card';
-@import './CardsSort/CardsSort';
-
 .cards {
   flex-grow: 1;
 
@@ -14,3 +11,6 @@
     gap: 60px;
   }
 }
+
+@import './Card/Card';
+@import './CardsSort/CardsSort';
