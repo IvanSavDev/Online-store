@@ -1,4 +1,4 @@
-import { ChooseActionType, NamesSelectedFilters } from '../SlidersTypes';
+import { ChooseActionType, NamesSelectedFilters } from '../SlidersFiltersTypes';
 
 export type SliderProps = {
   range: {

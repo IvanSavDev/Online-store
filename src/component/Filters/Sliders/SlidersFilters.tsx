@@ -11,12 +11,12 @@ import {
   SELECTED_COUNTS,
   SELECTED_PRICE,
   SELECTED_YEAR,
-} from './SlidersConst';
+} from './SlidersFiltersConst';
 import Slider from './Slider/Slider';
-import { SliderFilters, NamesFiltersSliders } from './SlidersTypes';
+import { ISliderFilters, NamesFiltersSliders } from './SlidersFiltersTypes';
 
-const Sliders = (): JSX.Element => {
-  const filters: SliderFilters = {
+const SlidersFilters = (): JSX.Element => {
+  const filters: ISliderFilters = {
     [FILTER_COUNTS]: {
       action: chooseCounts,
       selectedFilter: SELECTED_COUNTS,
@@ -62,4 +62,4 @@ const Sliders = (): JSX.Element => {
   );
 };
 
-export default Sliders;
+export default SlidersFilters;

@@ -6,7 +6,7 @@ import {
   SELECTED_COUNTS,
   SELECTED_PRICE,
   SELECTED_YEAR,
-} from './SlidersConst';
+} from './SlidersFiltersConst';
 
 export type ChooseActionType = (range: RangeFilter) => Actions;
 
@@ -28,7 +28,7 @@ interface SliderFilter {
   headerName: string;
 }
 
-export interface SliderFilters {
+export interface ISliderFilters {
   [FILTER_COUNTS]: SliderFilter;
   [FILTER_PRICE]: SliderFilter;
   [FILTER_YEAR]: SliderFilter;

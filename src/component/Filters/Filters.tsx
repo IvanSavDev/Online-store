@@ -3,7 +3,7 @@ import 'nouislider/dist/nouislider.css';
 import { useShopContext } from 'Src/context/ShopContext';
 import { resetState } from 'Src/reducer/reducerActions';
 import { Laptops } from 'Src/types/productDataType';
-import Sliders from './Sliders/Sliders';
+import SlidersFilters from './Sliders/SlidersFilters';
 import FilterFavorite from './FilterFavorite/FilterFavorite';
 import FilterColor from './FilterColor/FilterColor';
 import FilterSearch from './FilterSearch/FilterSearch';
@@ -16,7 +16,7 @@ const Filters = ({ products }: Laptops): JSX.Element => {
     <div className="filters">
       <FilterSearch />
       <MergedFilters products={products} />
-      <Sliders />
+      <SlidersFilters />
       <FilterColor />
       <FilterFavorite />
       <button
