@@ -5,7 +5,7 @@ import { SortOption, Laptops } from 'Src/types/productDataType';
 import { SortTypes } from 'Src/Enums/SortTypesEnum';
 import { isMatchFilters, makeLaptopComparator } from 'Src/utils/utils';
 import Card from './Card/Card';
-import SortCards from './CardsSort/CardsSort';
+import CardsSort from './CardsSort/CardsSort';
 
 const Cards = ({ products }: Laptops): JSX.Element => {
   const { filters } = useShopContext();
@@ -48,7 +48,7 @@ const Cards = ({ products }: Laptops): JSX.Element => {
 
   return (
     <div className="cards">
-      <SortCards
+      <CardsSort
         sortOption={sortOption}
         changeSorting={setSortOption}
       />

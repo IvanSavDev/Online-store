@@ -1,17 +1,17 @@
 import React from 'react';
 import { LaptopCategories } from 'Src/types/productDataType';
 import { SortTypes } from 'Src/Enums/SortTypesEnum';
-import { SortCardsProps } from './CardsSortType';
+import { CardsSortProps } from './CardsSortType';
 
-const SortCards = ({ sortOption, changeSorting }: SortCardsProps): JSX.Element => {
+const CardsSort = ({ sortOption, changeSorting }: CardsSortProps): JSX.Element => {
   const sortName = sortOption.name;
   const sortType = sortOption.ascending
     ? SortTypes.Ascending
     : SortTypes.Descending;
 
   const changeSortType = (event: React.SyntheticEvent) => {
-    const currentOptionEl = event.target as HTMLOptionElement;
-    const [nameSelectedSort, typeSelectedSort] = currentOptionEl.value.split('-') as [LaptopCategories, string];
+    const currentOptionType = event.target as HTMLOptionElement;
+    const [nameSelectedSort, typeSelectedSort] = currentOptionType.value.split('-') as [LaptopCategories, string];
     const isAscending = typeSelectedSort === SortTypes.Ascending;
     changeSorting({
       name: nameSelectedSort,
@@ -42,4 +42,4 @@ const SortCards = ({ sortOption, changeSorting }: SortCardsProps): JSX.Element =
   );
 };
 
-export default SortCards;
+export default CardsSort;
