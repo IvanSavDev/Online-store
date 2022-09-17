@@ -1,88 +1,83 @@
-import React, { createContext, useReducer, useState } from 'react';
-import { DataShop, IGoodsBasket, ShopContextType } from './ShopContextTypes';
+import React, {
+  createContext, useReducer, useState, useContext,
+} from 'react';
 import { reducerShop } from 'Src/reducer/reducer';
 import { initialStateFilters } from 'Src/data/initialStateFilters';
 import { getDataFromStorage } from 'Src/localStorage/apiLocalStorage';
-import { TypesSort } from 'Src/Enums/SortCardEnum';
+import {
+  BasketContextType, FiltersState, IGoodsBasket, ShopContextType,
+} from './ShopContextTypes';
 
-export const ShopContext = createContext<ShopContextType>(null);
+const FiltersContext = createContext<ShopContextType>(null);
+const BasketContext = createContext<BasketContextType>(null);
+export const useShopContext = () => useContext(FiltersContext)!;
+export const useBasketContext = () => useContext(BasketContext)!;
 
-const addGoodsInBasket =
-  (addToBasket: React.Dispatch<React.SetStateAction<IGoodsBasket>>) =>
-  (name: string, action: string): void => {
-    const currentCount = action === 'add' ? 1 : -1;
-    addToBasket((prevState) => {
-      const copyState = { ...prevState };
-      if (action === 'add') {
-        return {
-          ...copyState,
-          [name]: 1,
-          length: prevState.length + currentCount,
-        };
-      } else {
-        delete copyState[name];
-        return {
-          ...copyState,
-          length: prevState.length + currentCount,
-        };
-      }
-    });
-  };
-
-export const Context = ({
-  children,
-}: {
+const ShopProvider = ({ children }: {
   children: React.ReactNode;
 }): JSX.Element => {
-  let startData: DataShop = {
-    stateFilters: initialStateFilters,
-    stateBasket: { length: 0 },
-    sortCategory: {
-      name: 'name',
-      [TypesSort.Ascending]: true,
-    },
+  let startData: Omit<FiltersState, 'sortOption'> = {
+    filters: initialStateFilters,
+    goodsBasket: { length: 0 },
   };
 
-  const [loadStorage, changeLoadStorage] = useState(false);
+  const [loadStorage, setLoadStorage] = useState(false);
 
   if (!loadStorage) {
-    changeLoadStorage(true);
+    setLoadStorage(true);
     const dataFromStorage = getDataFromStorage();
     if (dataFromStorage) {
-      const copyData: DataShop = {
+      startData = {
         ...dataFromStorage,
-        stateFilters: {
-          ...dataFromStorage.stateFilters,
+        filters: {
+          ...dataFromStorage.filters,
           search: '',
         },
       };
-      startData = copyData;
     }
   }
 
-  const [dataOfGoodsInBasket, addToBasket] = useState<IGoodsBasket>(
-    startData.stateBasket
+  const [goodsBasket, setGoodsBasket] = useState<IGoodsBasket>(
+    startData.goodsBasket,
   );
-  const [stateFilters, dispatch] = useReducer(
+  const [filters, dispatch] = useReducer(
     reducerShop,
-    startData.stateFilters
+    startData.filters,
   );
 
+  const productFilters = React.useMemo(() => ({
+    filters,
+    dispatch,
+  }), [filters]);
+
+  const basketGoods = React.useMemo(() => ({
+    goodsBasket,
+    addGoodsToBasket: (name: string) => {
+      setGoodsBasket((previousState) => ({
+        ...previousState,
+        [name]: 1,
+        length: previousState.length + 1,
+      }));
+    },
+    deleteGoodsFromBasket: (name: string) => {
+      setGoodsBasket((previousState) => {
+        const copyState = { ...previousState };
+        delete copyState[name];
+        return {
+          ...copyState,
+          length: previousState.length - 1,
+        };
+      });
+    },
+  }), [goodsBasket]);
+
   return (
-    <ShopContext.Provider
-      value={{
-        stateFilters,
-        dispatch,
-        stateBasket: {
-          dataOfGoodsInBasket,
-          addGoodsInBasket: addGoodsInBasket(addToBasket),
-        },
-        stateSortCategory: startData.sortCategory,
-      }}
-    >
-      {children}
-    </ShopContext.Provider>
+    <FiltersContext.Provider value={productFilters}>
+      <BasketContext.Provider value={basketGoods}>
+        {children}
+      </BasketContext.Provider>
+    </FiltersContext.Provider>
   );
 };
 
-export default Context;
+export default ShopProvider;

@@ -1,27 +1,28 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { chooseFavorite } from 'Src/reducer/reducerActions';
-import { ShopContext } from 'Src/context/ShopContext';
-import { ShopContextType } from 'Src/context/ShopContextTypes';
+import { useShopContext } from 'Src/context/ShopContext';
 
 const FilterFavorite = (): JSX.Element => {
-  const { dispatch, stateFilters } = useContext<ShopContextType>(ShopContext)!;
+  const { dispatch, filters } = useShopContext();
+
+  const selectFavorite = ({ target }: React.ChangeEvent<HTMLInputElement>) => (
+    dispatch(chooseFavorite(target.checked))
+  );
 
   return (
-    <div className="category-favorite">
+    <div className="filter-favorite">
       <label
         htmlFor="favorite"
-        className="filters__header category-favorite__header"
+        className="filters__header filter-favorite__header"
       >
         Only favorite:
       </label>
       <input
         id="favorite"
         type="checkbox"
-        checked={stateFilters.selectedFavorite}
-        onChange={({ target }: React.ChangeEvent<HTMLInputElement>) => {
-          dispatch(chooseFavorite(target.checked));
-        }}
-      ></input>
+        checked={filters.selectedFavorite}
+        onChange={selectFavorite}
+      />
     </div>
   );
 };

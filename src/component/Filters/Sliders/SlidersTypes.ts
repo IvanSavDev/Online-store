@@ -1,35 +1,35 @@
-import { DataRange, Actions } from 'Src/reducer/reducerActionsTypes';
+import { RangeFilter, Actions } from 'Src/reducer/reducerActionsTypes';
 import {
-  CATEGORY_COUNTS,
-  CATEGORY_PRICE,
-  CATEGORY_YEAR,
+  FILTER_COUNTS,
+  FILTER_PRICE,
+  FILTER_YEAR,
   SELECTED_COUNTS,
   SELECTED_PRICE,
   SELECTED_YEAR,
 } from './SlidersConst';
 
-export type ChooseActionType = (dataCounts: DataRange) => Actions;
+export type ChooseActionType = (range: RangeFilter) => Actions;
 
-export type NamesStateRangeType =
+export type NamesSelectedFilters =
   | typeof SELECTED_COUNTS
   | typeof SELECTED_PRICE
   | typeof SELECTED_YEAR;
 
-export type NamesCategoriesSliders =
-  | typeof CATEGORY_COUNTS
-  | typeof CATEGORY_PRICE
-  | typeof CATEGORY_YEAR;
+export type NamesFiltersSliders =
+  | typeof FILTER_COUNTS
+  | typeof FILTER_PRICE
+  | typeof FILTER_YEAR;
 
-interface IDataSlider {
+interface SliderFilter {
   action: ChooseActionType;
-  nameState: NamesStateRangeType;
+  selectedFilter: NamesSelectedFilters;
   step: number;
   range: { min: number; max: number };
   headerName: string;
 }
 
-export interface IDataForSlider {
-  [CATEGORY_COUNTS]: IDataSlider;
-  [CATEGORY_PRICE]: IDataSlider;
-  [CATEGORY_YEAR]: IDataSlider;
+export interface SliderFilters {
+  [FILTER_COUNTS]: SliderFilter;
+  [FILTER_PRICE]: SliderFilter;
+  [FILTER_YEAR]: SliderFilter;
 }

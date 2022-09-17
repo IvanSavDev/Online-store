@@ -1,5 +1,4 @@
-import { ChooseActionType } from '../SlidersTypes';
-import { NamesStateRangeType } from '../SlidersTypes';
+import { ChooseActionType, NamesSelectedFilters } from '../SlidersTypes';
 
 export type SliderProps = {
   range: {
@@ -7,8 +6,8 @@ export type SliderProps = {
     max: number;
   };
   step: number;
-  categorySlider: string;
+  filterName: string;
   headerName: string;
   action: ChooseActionType;
-  nameState: NamesStateRangeType;
+  selectedFilter: NamesSelectedFilters;
 };

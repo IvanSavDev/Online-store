@@ -1,55 +1,64 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useBasketContext, useShopContext } from 'Src/context/ShopContext';
+import { getDataFromStorage, setDataToStorage } from 'Src/localStorage/apiLocalStorage';
+import { SortOption, Laptops } from 'Src/types/productDataType';
+import { SortTypes } from 'Src/Enums/SortTypesEnum';
+import { isMatchFilters, makeLaptopComparator } from 'Src/utils/utils';
 import Card from './Card/Card';
-import SortCards from './SortCards/SortCards';
-import { ShopContext } from 'Src/context/ShopContext';
-import { setDataFromStorage } from 'Src/localStorage/apiLocalStorage';
-import { CardsProps } from './CardsTypes';
-import { getFilteredCards } from './getFilteredCards';
-import { ShopContextType } from 'Src/context/ShopContextTypes';
-import { LaptopDataCategories } from 'Src/types/productDataType';
-import { makeLaptopComparator } from './getSortedCards';
+import SortCards from './CardsSort/CardsSort';
 
-const Cards = ({ dataItems }: CardsProps): JSX.Element => {
-  const { stateFilters, stateBasket, stateSortCategory } =
-    useContext<ShopContextType>(ShopContext)!;
+const Cards = ({ products }: Laptops): JSX.Element => {
+  const { filters } = useShopContext();
+  const { goodsBasket } = useBasketContext();
+  const [loadStorage, setLoadStorage] = useState(false);
 
-  const [sortCategory, setSortCategory] =
-    useState<LaptopDataCategories>(stateSortCategory);
+  let initialSortOption: SortOption = {
+    name: 'name',
+    [SortTypes.Ascending]: true,
+  };
+
+  if (!loadStorage) {
+    setLoadStorage(true);
+    const dataFromStorage = getDataFromStorage();
+    if (dataFromStorage) {
+      initialSortOption = dataFromStorage.sortOption;
+    }
+  }
+
+  const [sortOption, setSortOption] = useState<SortOption>(initialSortOption);
 
   const currentSort = makeLaptopComparator(
-    sortCategory.name,
-    sortCategory.ascending
+    sortOption.name,
+    sortOption.ascending,
   );
 
   useEffect(() => {
     const generalState = {
-      stateFilters,
-      stateBasket: stateBasket.dataOfGoodsInBasket,
-      sortCategory,
+      filters,
+      goodsBasket,
+      sortOption,
     };
-    setDataFromStorage(generalState);
-  }, [stateFilters, stateBasket, sortCategory]);
+    setDataToStorage(generalState);
+  }, [filters, sortOption, goodsBasket]);
 
-  const filteredAndSortedCards = dataItems
-    .filter((dataItem) => getFilteredCards(dataItem, stateFilters))
+  const filteredCards = products
+    .filter((product) => isMatchFilters(product, filters))
     .sort(currentSort)
-    .map((item) => <Card key={item.id} dataItem={item}></Card>);
+    .map((product) => <Card key={product.id} product={product} />);
 
   return (
     <div className="cards">
       <SortCards
-        dataForSort={{
-          category: { sortCategory, setSortCategory },
-        }}
-      ></SortCards>
-      <div className="cards__list">
-        {filteredAndSortedCards}
-        {filteredAndSortedCards.length === 0 ? (
-          <h3>Sorry, no matches found</h3>
-        ) : (
-          ''
-        )}
-      </div>
+        sortOption={sortOption}
+        changeSorting={setSortOption}
+      />
+      {filteredCards.length === 0 ? (
+        <h3 className="cards__not-found">Sorry, no matches found :(</h3>
+      ) : (
+        <div className="cards__list">
+          {filteredCards}
+        </div>
+      )}
     </div>
   );
 };

@@ -1,4 +1,4 @@
-.category-colors {
+.filter-colors {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -6,50 +6,52 @@
   &__header {
     margin: 0;
   }
+
+  &__list {
+    display: inline-flex;
+    gap: 15px;
+  }
+
+  &__item {
+    position: relative;
+    align-self: center;
+    width: 15px;
+    height: 15px;
+
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      display: block;
+      width: 20px;
+      height: 20px;
+      border: 1px solid black;
+      cursor: pointer;
+      transform: translate(-50%, -50%);
+    }
+
+    &:checked::before {
+      outline: 3px solid rgb(255, 228, 196);
+    }
+
+    &_grey::before {
+      background-color: grey;
+    }
+
+    &_green::before {
+      background-color: rgb(12, 163, 12);
+    }
+
+    &_black::before {
+      background-color: black;
+    }
+
+    &_blue::before {
+      background-color: rgb(30, 30, 238);
+    }
+  }
 }
 
-.colors__list {
-  display: inline-flex;
-  gap: 15px;
-}
 
-.color__item {
-  position: relative;
-  align-self: center;
-  width: 15px;
-  height: 15px;
-
-
-  &::before {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    display: block;
-    width: 20px;
-    height: 20px;
-    border: 1px solid black;
-    cursor: pointer;
-    transform: translate(-50%, -50%);
-  }
-
-  &:checked::before {
-    outline: 3px solid rgb(185, 20, 20);
-  }
-
-  &_grey::before {
-    background-color: grey;
-  }
-
-  &_green::before {
-    background-color: rgb(12, 163, 12);
-  }
-
-  &_black::before {
-    background-color: black;
-  }
-
-  &_blue::before {
-    background-color: rgb(30, 30, 238);
-  }
-}

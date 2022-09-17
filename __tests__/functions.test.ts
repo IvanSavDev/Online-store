@@ -1,21 +1,19 @@
-import {
-  chooseCompany,
-  choosePrice,
-  chooseRam,
-  chooseFavorite,
-} from '../src/reducer/reducerActions';
-import { getFilteredCards } from 'Src/component/Cards/getFilteredCards';
-import { makeLaptopComparator } from 'Src/component/Cards/getSortedCards';
-import { productData } from 'Src/data/productData';
-import { getUniqNames } from 'Src/component/Filters/MergeCategories/getUniqNames';
-import { reducerShop } from '../src/reducer/reducer';
+import { InitialStateFiltersType } from 'Src/types/initialStateFiltersType';
+import { laptops } from 'Src/data/productData';
+import { getCategoryValues, isMatchFilters, makeLaptopComparator } from 'Src/utils/utils';
 import {
   SELECT_PRICE,
   SELECT_RAM,
   SELECT_COMPANY,
   SELECT_FAVORITE,
 } from 'Src/reducer/reducerConst';
-import { InitialStateFiltersType } from 'Src/types/initialStateFiltersType';
+import { reducerShop } from '../src/reducer/reducer';
+import {
+  chooseCompany,
+  choosePrice,
+  chooseRam,
+  chooseFavorite,
+} from '../src/reducer/reducerActions';
 
 test('filter cards', () => {
   const initState: InitialStateFiltersType = {
@@ -31,9 +29,9 @@ test('filter cards', () => {
     search: '',
   };
 
-  const firstElement = productData[0];
+  const firstElement = laptops[0];
 
-  const result = getFilteredCards(firstElement, initState);
+  const result = isMatchFilters(firstElement, initState);
 
   expect(result).toBe(false);
 });
@@ -46,23 +44,16 @@ test('choose ram', () => {
 });
 
 test('sort cards', () => {
-  const firstElement = productData[0];
-  const secondElement = productData[1];
+  const firstElement = laptops[0];
+  const secondElement = laptops[1];
 
   const result = makeLaptopComparator('name', true);
 
   expect(result(firstElement, secondElement)).toBe(-1);
 });
 
-// test('choose price', () => {
-//   expect(addToBasket(5)).toStrictEqual({
-//     type: ADD_TO_BASKET,
-//     payload: 5,
-//   });
-// });
-
 test('get uniq name', () => {
-  const result = getUniqNames(productData, 'ram');
+  const result = getCategoryValues(laptops, 'ram');
 
   expect(result).toEqual(['8', '16']);
 });

@@ -1,33 +1,29 @@
-import React, { useContext } from 'react';
-import { ShopContext } from 'Src/context/ShopContext';
-import { ShopContextType } from 'Src/context/ShopContextTypes';
+import React from 'react';
+import { useShopContext } from 'Src/context/ShopContext';
 import { chooseColor } from 'Src/reducer/reducerActions';
 import { Colors } from './FilterColorsEnum';
 
 const FilterColor = (): JSX.Element => {
-  const { stateFilters, dispatch } = useContext<ShopContextType>(ShopContext)!;
+  const { filters, dispatch } = useShopContext();
 
-  const currentActive = (event: React.SyntheticEvent): void => {
-    const input = event.target as HTMLInputElement;
-    dispatch(chooseColor({ [input.name]: input.checked }));
-  };
+  const selectColor = ({ target }: React.ChangeEvent<HTMLInputElement>) => (
+    dispatch(chooseColor({ [target.name]: target.checked }))
+  );
 
   return (
-    <div className="category-colors">
-      <h3 className="filters__header category-colors__header">Color:</h3>
-      <div className="colors__list">
-        {Object.values(Colors).map((color) => {
-          return (
-            <input
-              key={color}
-              type="checkbox"
-              name={color}
-              className={`color__item color__item_${color}`}
-              onChange={currentActive}
-              checked={stateFilters.selectedColors.includes(color)}
-            ></input>
-          );
-        })}
+    <div className="filter-colors">
+      <h3 className="filters__header filter-colors__header">Color:</h3>
+      <div className="filter-colors__list">
+        {Object.values(Colors).map((color) => (
+          <input
+            key={color}
+            type="checkbox"
+            name={color}
+            className={`filter-colors__item filter-colors__item_${color}`}
+            onChange={selectColor}
+            checked={filters.selectedColors.includes(color)}
+          />
+        ))}
       </div>
     </div>
   );

@@ -1,39 +1,30 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import 'nouislider/dist/nouislider.css';
+import { useShopContext } from 'Src/context/ShopContext';
+import { resetState } from 'Src/reducer/reducerActions';
+import { Laptops } from 'Src/types/productDataType';
 import Sliders from './Sliders/Sliders';
 import FilterFavorite from './FilterFavorite/FilterFavorite';
 import FilterColor from './FilterColor/FilterColor';
-import { ShopContext } from 'Src/context/ShopContext';
-import { resetState } from 'Src/reducer/reducerActions';
-import { FilterProps } from './FiltersTypes';
 import FilterSearch from './FilterSearch/FilterSearch';
-import MergeCategories from './MergeCategories/MergeCategories';
-import { ShopContextType } from 'Src/context/ShopContextTypes';
+import MergedFilters from './MergedFilters/MergedFilters';
 
-const Filters = ({ dataItems }: FilterProps): JSX.Element => {
-  const { dispatch } = useContext<ShopContextType>(ShopContext)!;
+const Filters = ({ products }: Laptops): JSX.Element => {
+  const { dispatch } = useShopContext();
 
   return (
     <div className="filters">
       <FilterSearch />
-      <MergeCategories dataItems={dataItems} />
+      <MergedFilters products={products} />
       <Sliders />
       <FilterColor />
       <FilterFavorite />
       <button
-        className="btn-reset btn-reset-filters"
+        className="btn-reset"
+        type="button"
         onClick={() => dispatch(resetState())}
       >
         Reset filters
-      </button>
-      <button
-        className="btn-reset btn-reset-options"
-        onClick={() => {
-          localStorage.removeItem('stateShop');
-          dispatch(resetState());
-        }}
-      >
-        Reset options
       </button>
     </div>
   );

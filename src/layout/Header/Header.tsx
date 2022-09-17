@@ -1,13 +1,10 @@
-import React, { useContext } from 'react';
-import { ShopContext } from 'Src/context/ShopContext';
-import { ShopContextType } from 'Src/context/ShopContextTypes';
+import React from 'react';
+import { useBasketContext } from 'Src/context/ShopContext';
 import imgStore from 'Src/assets/icons/store.png';
 import imgBasket from 'Src/assets/icons/wicker-basket.png';
 
 const Header = (): JSX.Element => {
-  const {
-    stateBasket: { dataOfGoodsInBasket },
-  } = useContext<ShopContextType>(ShopContext)!;
+  const { goodsBasket } = useBasketContext();
 
   return (
     <header className="header">
@@ -17,7 +14,7 @@ const Header = (): JSX.Element => {
           <span className="logo__name">Online store</span>
         </div>
         <div className="basket">
-          <div className="basket__counts">{dataOfGoodsInBasket.length}</div>
+          <div className="basket__counts">{goodsBasket.length}</div>
           <img src={imgBasket} alt="shopping basket" />
         </div>
       </div>

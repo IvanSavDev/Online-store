@@ -1,0 +1,12 @@
+.filter-favorite {
+  display: flex;
+  align-items: center;
+
+  &__header {
+    display: inline-block;
+    margin: 0;
+    margin-right: 10px;
+    font-size: 1.17em;
+    font-weight: bold;
+  }
+}

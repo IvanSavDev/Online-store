@@ -1,6 +1,6 @@
-import { ILaptopData } from 'Src/types/productDataType';
+import { LaptopCharacteristics } from 'Src/types/productDataType';
 
-export const productData: Array<ILaptopData> = [
+export const laptops: Array<LaptopCharacteristics> = [
   {
     id: 1,
     company: 'hp',

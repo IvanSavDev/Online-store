@@ -1,13 +1,10 @@
 .footer {
-  height: 80px;
-  padding: 22px 0;
-  background-color: $bisque;
-}
-
-.footer-container {
   display: flex;
-  justify-content: space-between;
-  gap: 20px;
+  justify-content: center;
+  align-content: center;
+  height: 80px;
+  padding: 20px 0;
+  background-color: $bisque;
 }
 
 .link-github {
@@ -18,19 +15,4 @@
     display: inline-block;
     height: 80%;
   }
-}
-
-.link-rs__img {
-  display: block;
-  height: 100%;
-}
-
-.container-year {
-  display: flex;
-  align-items: center;
-}
-
-.year {
-  font-size: 20px;
-  font-weight: bold;
 }

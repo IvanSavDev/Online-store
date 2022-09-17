@@ -1,13 +1,17 @@
+@import './Card/Card';
+@import './CardsSort/CardsSort';
+
 .cards {
   flex-grow: 1;
+
+  &__not-found {
+    text-align: center;
+  }
 
   &__list {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    grid-template-rows: repeat(auto-fill, minmax(200px, 1fr));
+    // grid-template-rows: repeat(auto-fill, minmax(200px, 1fr));
     gap: 60px;
   }
 }
-
-@import './Card/Card';
-@import './SortCards/SortCard';

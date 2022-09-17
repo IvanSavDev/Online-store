@@ -1,13 +1,13 @@
-import { DataShop } from 'Src/context/ShopContextTypes';
+import { FiltersState } from 'Src/context/ShopContextTypes';
 
-export const getDataFromStorage = (): DataShop | null => {
-  const dataFromStorage = localStorage.getItem('stateShop');
-  const stateShop: DataShop | null = dataFromStorage
+export const getDataFromStorage = (): FiltersState | null => {
+  const dataFromStorage = localStorage.getItem('filtersState');
+  const stateShop: FiltersState | null = dataFromStorage
     ? JSON.parse(dataFromStorage)
     : null;
   return stateShop;
 };
 
-export const setDataFromStorage = (generalState: DataShop): void => {
-  localStorage.setItem('stateShop', JSON.stringify(generalState));
+export const setDataToStorage = (filtersState: FiltersState) => {
+  localStorage.setItem('filtersState', JSON.stringify(filtersState));
 };

@@ -1,3 +1,5 @@
+import { InitialStateFiltersType } from 'Src/types/initialStateFiltersType';
+import { initialStateFilters } from 'Src/data/initialStateFilters';
 import {
   SELECT_COMPANY,
   SELECT_CPU,
@@ -11,15 +13,13 @@ import {
   RESET,
   VALUE_SEARCH,
 } from './reducerConst';
-
 import { Actions, ActionsCheckbox } from './reducerActionsTypes';
-import { InitialStateFiltersType } from 'Src/types/initialStateFiltersType';
 import { FiltersNames } from './reducerTypes';
 
 const changeDataCheckbox = (
   state: InitialStateFiltersType,
   selectedCategory: FiltersNames,
-  dataFromAction: ActionsCheckbox
+  dataFromAction: ActionsCheckbox,
 ) => {
   const [[name, productSelected]] = Object.entries(dataFromAction.payload);
   if (productSelected) {
@@ -29,19 +29,18 @@ const changeDataCheckbox = (
         ? state[selectedCategory]
         : [...state[selectedCategory], name],
     };
-  } else {
-    return {
-      ...state,
-      [selectedCategory]: state[selectedCategory].filter(
-        (companyName) => companyName !== name
-      ),
-    };
   }
+  return {
+    ...state,
+    [selectedCategory]: state[selectedCategory].filter(
+      (companyName) => companyName !== name,
+    ),
+  };
 };
 
 export const reducerShop = (
   state: InitialStateFiltersType,
-  action: Actions
+  action: Actions,
 ): InitialStateFiltersType => {
   switch (action.type) {
     case SELECT_COMPANY:
@@ -90,18 +89,7 @@ export const reducerShop = (
       };
 
     case RESET:
-      return {
-        selectedCompany: [],
-        selectedCpu: [],
-        selectedRam: [],
-        selectedSsd: [],
-        selectedCounts: [0, 10],
-        selectedPrice: [0, 120000],
-        selectedYearRelease: [2014, 2022],
-        selectedColors: [],
-        selectedFavorite: false,
-        search: '',
-      };
+      return initialStateFilters;
 
     default:
       return state;

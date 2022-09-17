@@ -1,29 +1,27 @@
-import React, { useContext, useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import 'nouislider/dist/nouislider.css';
 import * as noUiSlider from 'nouislider';
-import { ShopContext } from 'Src/context/ShopContext';
+import { useShopContext } from 'Src/context/ShopContext';
 import { SliderProps } from './SliderTypes';
-import { ShopContextType } from 'Src/context/ShopContextTypes';
 
 const Slider = ({
   range: { min, max },
   step,
-  categorySlider,
+  filterName,
   headerName,
   action,
-  nameState,
+  selectedFilter,
 }: SliderProps): JSX.Element => {
-  const ref = useRef<HTMLInputElement>(null!);
-  const { stateFilters, dispatch } = useContext<ShopContextType>(ShopContext)!;
-  console.log(nameState);
-  console.log(stateFilters);
-  console.log(stateFilters[nameState]);
-  const [currentMin, currentMax] = stateFilters[nameState];
+  const ref = useRef<HTMLInputElement | null>(null);
+  const { filters, dispatch } = useShopContext();
+  const [currentMin, currentMax] = filters[selectedFilter];
 
   useEffect(() => {
-    const slider = ref.current as noUiSlider.target;
-    if (slider && currentMin !== undefined && currentMax !== undefined) {
-      noUiSlider.create(slider, {
+    const containerSlider = ref.current as noUiSlider.target;
+    const slider = containerSlider.noUiSlider;
+
+    if (!slider) {
+      noUiSlider.create(containerSlider, {
         start: [currentMin, currentMax],
         connect: true,
         step,
@@ -32,29 +30,22 @@ const Slider = ({
           max,
         },
       });
-      const curSlider = slider.noUiSlider!;
-      curSlider.on('update', () => {
-        const [minFromSlider, maxFromSlider] = curSlider.get() as Array<string>;
-        dispatch(action([Number(minFromSlider), Number(maxFromSlider)]));
-      });
     }
-  }, [ref]);
 
-  useEffect(() => {
-    const slider = ref.current as noUiSlider.target;
-    const curSlider = slider.noUiSlider!;
-    const [minSlider, maxSlider] = curSlider.get() as Array<string>;
-    if (Number(minSlider) !== currentMin || Number(maxSlider) !== currentMax) {
-      if (currentMin !== undefined && currentMax !== undefined) {
-        curSlider.set([currentMin, currentMax]);
-      }
-    }
-  }, [currentMin, currentMax]);
+    slider?.on('update', () => {
+      const [minFromSlider, maxFromSlider] = slider.get() as Array<string>;
+      dispatch(action([Number(minFromSlider), Number(maxFromSlider)]));
+    });
+
+    return () => {
+      slider?.off('update');
+    };
+  }, []);
 
   return (
-    <div className={`category-${categorySlider}`}>
-      <h3 className="filters__header">{headerName}:</h3>
-      <div ref={ref}></div>
+    <div className={`filter-${filterName}`}>
+      <h3 className="filter-header range-header">{`${headerName}:`}</h3>
+      <div ref={ref} />
       <div className="count-range">
         <span>{currentMin}</span>
         <span>{currentMax}</span>

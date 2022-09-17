@@ -1,6 +1,6 @@
-import { TypesSort } from 'Src/Enums/SortCardEnum';
+import { SortTypes } from 'Src/Enums/SortTypesEnum';
 
-export interface ILaptopData {
+export interface LaptopCharacteristics {
   id: number;
   company: string;
   name: string;
@@ -12,6 +12,10 @@ export interface ILaptopData {
   color: string;
   price: number;
   favorite: boolean;
+}
+
+export interface Laptops {
+  products: Array<LaptopCharacteristics>;
 }
 
 export type LaptopCategories =
@@ -27,7 +31,7 @@ export type LaptopCategories =
   | 'price'
   | 'favorite';
 
-export interface LaptopDataCategories {
+export interface SortOption {
   name: LaptopCategories;
-  [TypesSort.Ascending]: boolean;
+  [SortTypes.Ascending]: boolean;
 }

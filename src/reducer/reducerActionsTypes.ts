@@ -12,27 +12,27 @@ import {
   VALUE_SEARCH,
 } from './reducerConst';
 
-export type DataCheckbox = {
+export type CheckboxFilter = {
   [key: string]: boolean;
 };
 
-export type DataRange = [number, number];
+export type RangeFilter = [number, number];
 
 export interface IChooseCompany {
   type: typeof SELECT_COMPANY;
-  payload: DataCheckbox;
+  payload: CheckboxFilter;
 }
 export interface IChooseCpu {
   type: typeof SELECT_CPU;
-  payload: DataCheckbox;
+  payload: CheckboxFilter;
 }
 export interface IChooseRam {
   type: typeof SELECT_RAM;
-  payload: DataCheckbox;
+  payload: CheckboxFilter;
 }
 export interface IChooseColors {
   type: typeof SELECT_COLORS;
-  payload: DataCheckbox;
+  payload: CheckboxFilter;
 }
 export interface IChooseCounts {
   type: typeof SELECT_COUNTS;
@@ -40,17 +40,17 @@ export interface IChooseCounts {
 }
 export interface IChooseSdd {
   type: typeof SELECT_SSD;
-  payload: DataCheckbox;
+  payload: CheckboxFilter;
 }
 
 export interface IChoosePrice {
   type: typeof SELECT_PRICE;
-  payload: DataRange;
+  payload: RangeFilter;
 }
 
 export interface IChooseYearRelease {
   type: typeof SELECT_YEAR_RELEASE;
-  payload: DataRange;
+  payload: RangeFilter;
 }
 
 export interface IChooseFavorite {

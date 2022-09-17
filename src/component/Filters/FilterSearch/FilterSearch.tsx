@@ -1,44 +1,46 @@
-import React, { useContext, useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import crossImg from 'Src/assets/icons/cross.png';
-import { ShopContext } from 'Src/context/ShopContext';
-import { setValueSearch } from 'Src/reducer/reducerActions';
+import { useShopContext } from 'Src/context/ShopContext';
+import { setSearchValue } from 'Src/reducer/reducerActions';
 
 const FilterSearch = (): JSX.Element => {
   const {
-    stateFilters: { search },
+    filters: { search },
     dispatch,
-  } = useContext(ShopContext)!;
+  } = useShopContext();
 
-  const inputSearch = useRef<HTMLInputElement>(null!);
+  const ref = useRef<HTMLInputElement | null>(null);
 
   useEffect(() => {
-    inputSearch.current.focus();
+    if (ref) {
+      ref.current?.focus();
+    }
   }, []);
 
-  const addValueSearch = ({
-    target,
-  }: React.ChangeEvent<HTMLInputElement>): void => {
-    if (setValueSearch) dispatch(setValueSearch(target.value));
-  };
+  const addValueSearch = ({ target }: React.ChangeEvent<HTMLInputElement>) => (
+    dispatch(setSearchValue(target.value))
+  );
 
-  const resetInput = (): void => {
-    dispatch(setValueSearch(''));
-  };
+  const resetInput = () => dispatch(setSearchValue(''));
 
   return (
-    <div className="category-search">
+    <div className="search">
       <input
-        className="category-search__text"
-        ref={inputSearch}
+        className="search__text"
+        ref={ref}
         value={search}
         type="text"
         placeholder="search..."
         onChange={addValueSearch}
         autoComplete="off"
       />
-      <button className="category-search__btn-reset" onClick={resetInput}>
+      <button
+        className="search__btn-reset"
+        type="button"
+        onClick={resetInput}
+      >
         <img
-          className="category-search__btn-img"
+          className="search__btn-img"
           src={crossImg}
           alt="reset input"
         />

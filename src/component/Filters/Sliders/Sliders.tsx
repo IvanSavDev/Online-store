@@ -1,61 +1,60 @@
 import React from 'react';
-import Slider from './Slider/Slider';
 import {
   chooseCounts,
   choosePrice,
   chooseYearRelease,
 } from 'Src/reducer/reducerActions';
-import { IDataForSlider, NamesCategoriesSliders } from './SlidersTypes';
 import {
-  CATEGORY_COUNTS,
-  CATEGORY_PRICE,
-  CATEGORY_YEAR,
+  FILTER_COUNTS,
+  FILTER_PRICE,
+  FILTER_YEAR,
   SELECTED_COUNTS,
   SELECTED_PRICE,
   SELECTED_YEAR,
 } from './SlidersConst';
+import Slider from './Slider/Slider';
+import { SliderFilters, NamesFiltersSliders } from './SlidersTypes';
 
 const Sliders = (): JSX.Element => {
-  const dataForSlider: IDataForSlider = {
-    [CATEGORY_COUNTS]: {
+  const filters: SliderFilters = {
+    [FILTER_COUNTS]: {
       action: chooseCounts,
-      nameState: SELECTED_COUNTS,
+      selectedFilter: SELECTED_COUNTS,
       step: 1,
       range: { min: 0, max: 10 },
       headerName: 'Counts',
     },
-    [CATEGORY_PRICE]: {
+    [FILTER_PRICE]: {
       action: choosePrice,
-      nameState: SELECTED_PRICE,
+      selectedFilter: SELECTED_PRICE,
       step: 5000,
       range: { min: 0, max: 120000 },
       headerName: 'Price',
     },
-    [CATEGORY_YEAR]: {
+    [FILTER_YEAR]: {
       action: chooseYearRelease,
-      nameState: SELECTED_YEAR,
+      selectedFilter: SELECTED_YEAR,
       step: 1,
       range: { min: 2014, max: 2022 },
       headerName: 'Release year',
     },
   };
 
-  const nameCategorySliders = Object.keys(
-    dataForSlider
-  ) as Array<NamesCategoriesSliders>;
+  const filtersNames = Object.keys(filters) as Array<NamesFiltersSliders>;
 
   return (
     <>
-      {nameCategorySliders.map((categoryName) => {
+      {filtersNames.map((filterName) => {
+        const filter = filters[filterName];
         return (
           <Slider
-            key={categoryName}
-            step={dataForSlider[categoryName].step}
-            categorySlider={categoryName}
-            range={dataForSlider[categoryName].range}
-            headerName={dataForSlider[categoryName].headerName}
-            action={dataForSlider[categoryName].action}
-            nameState={dataForSlider[categoryName].nameState}
+            key={filterName}
+            step={filter.step}
+            filterName={filterName}
+            range={filter.range}
+            headerName={filter.headerName}
+            action={filter.action}
+            selectedFilter={filter.selectedFilter}
           />
         );
       })}

@@ -13,8 +13,8 @@ import {
 } from './reducerConst';
 
 import {
-  DataCheckbox,
-  DataRange,
+  CheckboxFilter,
+  RangeFilter,
   IChooseColors,
   IChooseCompany,
   IChooseCounts,
@@ -28,37 +28,37 @@ import {
   ISetValue,
 } from './reducerActionsTypes';
 
-export const chooseCompany = (dataCompany: DataCheckbox): IChooseCompany => ({
+export const chooseCompany = (dataCompany: CheckboxFilter): IChooseCompany => ({
   type: SELECT_COMPANY,
   payload: dataCompany,
 });
-export const chooseCpu = (dataCpu: DataCheckbox): IChooseCpu => ({
+export const chooseCpu = (dataCpu: CheckboxFilter): IChooseCpu => ({
   type: SELECT_CPU,
   payload: dataCpu,
 });
-export const chooseRam = (dataRam: DataCheckbox): IChooseRam => ({
+export const chooseRam = (dataRam: CheckboxFilter): IChooseRam => ({
   type: SELECT_RAM,
   payload: dataRam,
 });
-export const chooseColor = (dataColors: DataCheckbox): IChooseColors => ({
+export const chooseColor = (dataColors: CheckboxFilter): IChooseColors => ({
   type: SELECT_COLORS,
   payload: dataColors,
 });
-export const chooseCounts = (dataCounts: DataRange): IChooseCounts => ({
+export const chooseCounts = (dataCounts: RangeFilter): IChooseCounts => ({
   type: SELECT_COUNTS,
   payload: dataCounts,
 });
-export const chooseSsd = (dataSsd: DataCheckbox): IChooseSdd => ({
+export const chooseSsd = (dataSsd: CheckboxFilter): IChooseSdd => ({
   type: SELECT_SSD,
   payload: dataSsd,
 });
 export const chooseYearRelease = (
-  dataYearRelease: DataRange
+  dataYearRelease: RangeFilter,
 ): IChooseYearRelease => ({
   type: SELECT_YEAR_RELEASE,
   payload: dataYearRelease,
 });
-export const choosePrice = (dataPrice: DataRange): IChoosePrice => ({
+export const choosePrice = (dataPrice: RangeFilter): IChoosePrice => ({
   type: SELECT_PRICE,
   payload: dataPrice,
 });
@@ -69,7 +69,7 @@ export const chooseFavorite = (dataFavorite: boolean): IChooseFavorite => ({
 export const resetState = (): IResetState => ({
   type: RESET,
 });
-export const setValueSearch = (valueSearch: string): ISetValue => ({
+export const setSearchValue = (valueSearch: string): ISetValue => ({
   type: VALUE_SEARCH,
   payload: valueSearch,
 });

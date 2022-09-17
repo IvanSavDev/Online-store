@@ -1,14 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './component/App/App';
-import Context from './context/ShopContext';
+import ShopProvider from './context/ShopContext';
 
 const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
+  document.getElementById('root') as HTMLElement,
 );
 
 root.render(
-  <Context>
-    <App />
-  </Context>
+  <React.StrictMode>
+    <ShopProvider>
+      <React.Profiler id="app" onRender={() => {}}>
+        <App />
+      </React.Profiler>
+    </ShopProvider>
+  </React.StrictMode>,
 );
