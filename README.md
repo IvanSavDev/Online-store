@@ -2,7 +2,7 @@
 
 ## Ссылка на публикацию:
 
-[Online store](https://ivansavdev.github.io/Online-store/online-store/)
+[Online store](https://ivansavdev.github.io/Online-store/)
 
 ## Description
 
