@@ -1,22 +1,26 @@
 # Online store
 
-## Link to deploy:
+## Ссылка на публикацию:
 
-https://ivansavdev.github.io/Online-store/online-store/
+[Online store](https://ivansavdev.github.io/Online-store/online-store/)
 
 ## Description
 
-This is a online store that allows you to perform various filtering, as well as adding products to the cart and saving them to localStorage.
+Это интернет-магазин, который позволяет применять к списку товаров множественные сортировки, а также добавлять понравившиеся товары в корзину. Данные о сортировках и покупках сохраняются в localStorage.
 
-## Installation
+## Технологический стек
+- Построение приложения - **[React](https://reactjs.org/)**
+- Верстка страницы - **[SCSS](https://sass-scss.ru/)**
+- Тестирование - **[Jest](https://jestjs.io/ru/)**
+
+## Установка
 
 ```
 npm install
 ```
 
-## Start
+## Старт приложения
 
 ```
 npm start
 ```
-
