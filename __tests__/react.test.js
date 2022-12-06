@@ -1,6 +1,6 @@
 import renderer from 'react-test-renderer';
 import FilterCategory from 'Src/component/Filters/MergeCategories/FilterCategory/FilterCategory';
-import { chooseCompany } from '../src/reducer/reducerActions';
+import { chooseCompany } from 'Src/reducer/reducerActions';
 import { productData } from 'Src/data/productData';
 import MergeCategories from 'Src/component/Filters/MergeCategories/MergeCategories';
 
